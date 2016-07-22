@@ -44,10 +44,10 @@ class ContactsControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
 
-    get edit_contact_path(Contact.first)
+    get edit_contact_path(Contact.find_by(contact_name: name))
     assert_response :success
     assert_select "h1", "Edit Contact"
-    assert_select "input", name
+    assert_select "input[value=?]", name
 
   end
 
