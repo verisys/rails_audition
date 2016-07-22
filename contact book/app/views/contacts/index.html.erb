@@ -1,0 +1,11 @@
+<h1>Contacts</h1>
+
+<%= link_to "New Contact", new_contact_path %>
+
+
+<% @contacts.each do |contact| %>
+
+    <br>
+    <%= link_to contact.contact_name, edit_contact_path(contact) %>
+
+<% end %>
