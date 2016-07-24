@@ -1,2 +1,6 @@
-<h1>Contacts#edit</h1>
-<p>Find me in app/views/contacts/edit.html.erb</p>
+<h2 class="center">Edit this Contact</h2>
+<% if can_edit?(@contact) %>
+	<%= render 'form' %>
+<% else %>
+	<h4>You cannot edit this contact as it is not in your department</h4>
+<% end %>

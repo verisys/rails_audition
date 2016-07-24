@@ -1,2 +1,27 @@
-<h1>Departments#index</h1>
-<p>Find me in app/views/departments/index.html.erb</p>
+<div class="row">
+	<div class="container">
+		<% @departments.each do |department| %>
+			<% if department == current_user.department %>
+				<div class="col s6 m4">
+			    <div class="card blue-grey darken-1">
+			      <div class="card-content white-text">
+			        <span class="card-title"><%= link_to department.name, department_contacts_path(department) %></span>
+			        <p>This is your department!</p>
+			      </div>
+			      <div class="card-action">
+			        <%= link_to "Add a Contact", new_department_contact_path(department) %>
+			      </div>
+			    </div>
+			  </div>
+		  <% else %>
+		  	<div class="col s6 m4">
+			    <div class="card blue-grey darken-1">
+			      <div class="card-content white-text">
+			        <span class="card-title"><%= link_to department.name, department_contacts_path(department) %></span>
+			      </div>
+			    </div>
+			  </div>
+		  <% end %>
+		<% end %>
+	</div>
+</div>

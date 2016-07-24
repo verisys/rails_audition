@@ -1,2 +1,12 @@
-<h1>Departments#new</h1>
-<p>Find me in app/views/departments/new.html.erb</p>
+<h2 class="center">What department do you supervise?</h2>
+
+<div class="row">
+	<div class="col m6 offset-m3">
+		<%= form_for @department do |f| %>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+
+			<%= f.submit value: "Submit", class: "btn" %>
+		<% end %>
+	</div>
+</div>

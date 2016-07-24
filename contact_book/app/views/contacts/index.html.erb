@@ -1,2 +1,24 @@
-<h1>Contacts#index</h1>
-<p>Find me in app/views/contacts/index.html.erb</p>
+<h2 class="center"><%= link_to @department.name, department_path(@department) %></h2>
+<% if @department == current_user.department %>
+	<h5 class="center"><%= link_to "Add a Contact", new_department_contact_path(@department) %></h5>
+<% end %>
+<% if @contacts.length > 0 %>
+	<div class="container">
+		<% @contacts.each do |contact| %>
+			<div class="<%= 'inactive' unless contact.active %>">
+				<h3><%= contact.active ? (link_to contact.name, department_contact_path(@department, contact)) : (link_to "#{contact.name} - INACTIVE", department_contact_path(@department, contact)) %></h3>
+				<p>Business Phone: <%= number_to_phone(contact.business_phone, extension: contact.extension) %></p>
+				<p>Home Phone: <%= number_to_phone(contact.home_phone) %></p>
+				<h5>Emergency Contact</h5>
+				<p>Name: <%= contact.emergency_contact_name %></p>
+				<p>Phone: <%= contact.emergency_contact_phone %></p>
+				<% if can_edit?(contact) %>
+					<%= link_to "Edit", edit_department_contact_path(@department, contact) %>
+				<% end %>
+			</div>
+			<hr>
+		<% end %>
+	</div>
+<% else %>
+	<h3 class="center"> This department has no contacts </h3>
+<% end %>

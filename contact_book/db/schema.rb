@@ -16,15 +16,16 @@ ActiveRecord::Schema.define(version: 20160722204446) do
   enable_extension "plpgsql"
 
   create_table "contacts", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "business_phone"
-    t.integer  "extension"
-    t.integer  "home_phone"
-    t.string   "emergency_contact_name"
-    t.integer  "emergency_contact_phone"
+    t.string   "name",                                   null: false
+    t.integer  "business_phone",                         null: false
+    t.integer  "extension",                              null: false
+    t.integer  "home_phone",                             null: false
+    t.string   "emergency_contact_name",                 null: false
+    t.integer  "emergency_contact_phone",                null: false
+    t.boolean  "active",                  default: true, null: false
     t.integer  "department_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.index ["department_id"], name: "index_contacts_on_department_id", using: :btree
   end
 
@@ -37,7 +38,7 @@ ActiveRecord::Schema.define(version: 20160722204446) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "department"
+    t.string   "name",                                null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "email",                  default: "", null: false

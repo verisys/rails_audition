@@ -1,0 +1,20 @@
+<div class="row">
+	<div  class="col m6 offset-m3">
+		<%= form_for [@department, @contact] do  |f| %>
+			<%= f.text_field :name, placeholder: "Name", required: true %>
+			<%= f.number_field :business_phone, placeholder: "Business Phone", required: true %>
+			<%= f.number_field :extension, placeholder: "Extension", required: true %>
+			<%= f.number_field :home_phone, placeholder: "Home Phone", required: true %>
+			<%= f.text_field :emergency_contact_name, placeholder: "Emergency Contact Name", required: true %>
+			<%= f.number_field :emergency_contact_phone, placeholder: "Emergency Contact Phone", required: true %>
+			<% if @contact.id %>
+				<div class="checkbox">
+					<%= f.check_box :active, id: "active", class: "filled-in" %>
+					<%= f.label "Active Employee", for: "active", id: "active" %>
+				</div>
+			<% end %>
+			<br>
+			<%= f.submit class: "btn" %>
+		<% end %>
+	</div>
+</div>
