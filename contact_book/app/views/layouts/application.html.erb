@@ -30,6 +30,15 @@
 		    </div>
 		  </nav>
   	</header>
+    <div class="row">
+      <% flash.each do |key, value| %>
+        <div class="col m4 offset-m4 s6 offset-s3">
+          <div class="valign-wrapper flash flash-<%= key %>">
+            <h4 class="valign center"><%= value %></h4>
+          </div>
+        </div>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
