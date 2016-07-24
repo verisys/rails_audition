@@ -14,10 +14,10 @@ class ContactsController < ApplicationController
   end
 
   def create
-    contact = @department.contacts.new(contact_params)
-    if contact.save
+    @contact = @department.contacts.new(contact_params)
+    if @contact.save
       flash[:success] = "Contact created"
-      redirect_to department_contact_path(@department, contact)
+      redirect_to department_contact_path(@department, @contact)
     else
       flash[:danger] = @contact.errors.full_messages.join('<br />').html_safe
       render :new
@@ -43,13 +43,7 @@ class ContactsController < ApplicationController
   private
 
   def find_dept
-    if params[:department_id]
-      @department = Department.find(params[:department_id])
-    elsif current_user && !!current_user.department
-      @department = current_user.department
-    else
-      redirect_to new_department_path
-    end
+    @department = Department.find(params[:department_id])
   end
 
   def find_contact

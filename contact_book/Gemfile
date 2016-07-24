@@ -19,6 +19,7 @@ gem 'devise', '~> 4.1.1'
 group :development, :test do
   gem 'pry', '~> 0.10.4'
   gem 'rspec-rails', '~> 3.5.1'
+  gem 'rails-controller-testing', '~> 0.1.1'
   gem 'shoulda-matchers', '~> 3.1.1'
   gem 'database_cleaner', '~> 1.5.3'
   gem 'simplecov', '~> 0.12.0'

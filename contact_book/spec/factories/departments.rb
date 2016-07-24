@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :department do
-    name "MyString"
-    user nil
+    sequence :name do |n|
+    	"name#{n}"
+    end
+    user
   end
 end
