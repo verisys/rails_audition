@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-	has_one :department
+	has_one :department, dependent: :destroy
 
 	validates_presence_of :name
 
