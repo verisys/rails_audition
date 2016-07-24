@@ -11,37 +11,20 @@ class DepartmentsController < ApplicationController
     @user = User.find(@department.user_id)
   end
 
-  def show_users_department
-    if current_user.department
-      @department = current_user.department
-    else
-      binding.pry
-    end
-  end
-
   def new
     @department = Department.new
   end
 
   def create
-    department = Department.create(department_params)
-    if department.save
-      current_user.department = department
+    @department = Department.create(department_params)
+    if @department.save
+      current_user.department = @department
       flash[:success] = "Department Created"
       redirect_to root_path
     else
-      flash[:danger] = department.errors.full_messages.join('<br />').html_safe
+      flash[:danger] = @department.errors.full_messages.join('<br />').html_safe
       render :new
     end
-  end
-
-  def edit
-  end
-
-  def udpate
-  end
-
-  def destroy
   end
 
   private 

@@ -65,7 +65,7 @@ RSpec.describe ContactsController, type: :controller do
       @failing_params = { name: nil }
     end
 
-    it "return http redirect" do
+    it "returns http redirect" do
       post :create, contact: @contact_params, department_id: @department.id
       expect(response).to have_http_status(302)
     end

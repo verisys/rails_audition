@@ -16,6 +16,9 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
 
+  config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::TestHelpers, :type => :helper
+
   config.filter_rails_from_backtrace!
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction

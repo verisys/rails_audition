@@ -11,5 +11,16 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe ContactsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:contact) { FactoryGirl.create(:contact) }
+  before(:each) do
+  	@department = Department.find(contact.department_id)
+  	@user = User.find(@department.user_id)
+  	sign_in @user
+  end
+
+  describe "can edit?" do
+  	it "returns true for user's contact" do
+  		expect(helper.can_edit?(contact)).to be_truthy
+  	end
+  end
 end
