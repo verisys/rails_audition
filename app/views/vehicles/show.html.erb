@@ -4,3 +4,5 @@
 <p>Model: <%= @vehicle.model %></p>
 <p>Price: <%= @vehicle.price %></p>
 <p>Location: <%= @vehicle.location.name %></p>
+
+<%= link_to 'Record a sale for this vehicle', new_location_vehicle_sale_path(@vehicle.location, @vehicle) %>
