@@ -19,9 +19,9 @@ FactoryGirl.define do
     make "MyString"
     model "MyString"
     price 1
-    location nil
+    location
     year "MyString"
     mileage "MyString"
-    sold false
+    sold true
   end
 end

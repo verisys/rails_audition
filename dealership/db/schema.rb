@@ -21,8 +21,9 @@ ActiveRecord::Schema.define(version: 20160725000259) do
     t.integer  "price",                       null: false
     t.string   "year"
     t.string   "mileage"
-    t.boolean  "sold",        default: false, null: false
+    t.boolean  "sold",        default: false
     t.integer  "location_id"
+    t.integer  "salesman_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.index ["location_id"], name: "index_cars_on_location_id", using: :btree
@@ -39,8 +40,8 @@ ActiveRecord::Schema.define(version: 20160725000259) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "type"
+    t.string   "name",                                null: false
+    t.string   "type",                                null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "email",                  default: "", null: false

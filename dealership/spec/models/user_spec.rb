@@ -3,8 +3,8 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  name                   :string
-#  type                   :string
+#  name                   :string           not null
+#  type                   :string						not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email                  :string           default(""), not null
@@ -22,5 +22,14 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+	describe "validations" do
+		it { should validate_presence_of :name }
+		it { should validate_presence_of :type }
+	end
+
+  describe 'self.types' do
+		it 'returns array of valid subclasses' do
+			expect(User.types).to eq(["Owner", "Inventory Manager", "Salesman"])
+		end
+	end 
 end

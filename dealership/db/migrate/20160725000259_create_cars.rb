@@ -6,8 +6,9 @@ class CreateCars < ActiveRecord::Migration[5.0]
       t.integer :price, null: false
       t.string :year
       t.string :mileage
-      t.boolean :sold, null: false, default: false
+      t.boolean :sold, default: false
       t.belongs_to :location, foreign_key: true
+      t.integer :salesman_id
 
       t.timestamps
     end
