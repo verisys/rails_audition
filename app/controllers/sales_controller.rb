@@ -1,4 +1,5 @@
 class SalesController < ApplicationController
+  # TODO Implement this in the front end
   def index
     @sales = Sale.all
   end
