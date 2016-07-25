@@ -16,4 +16,6 @@
 
 class Car < ApplicationRecord
   belongs_to :location
+
+  validates_presence_of :make, :model, :price, :sold
 end
