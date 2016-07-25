@@ -1,7 +1,7 @@
 # Auto Dealership
 
 ## Background
-An automotive dealership has approached us and is requesting us to create a tool to help them manage their inventory.
+An automotive dealership has asked us to create a tool to help them manage their inventory.
 The dealership deals with different kinds of vehicles and has multiple locations they will transfer vehicles to and from.
 
 ## Your Task
