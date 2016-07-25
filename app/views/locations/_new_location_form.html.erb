@@ -1,0 +1,18 @@
+<%= form_for @location do |f| %>
+    <% if @location.errors.any? %>
+        <div id="error_explanation">
+          <ul>
+            <% @location.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <p>
+      <%= f.label :name %> <br>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>
