@@ -13,7 +13,7 @@
 #
 
 class Location < ApplicationRecord
-	has_many :cars
+	has_many :cars, dependent: :destroy
 
 	validates_presence_of :address_line_1, :city, :state, :zip_code
 end

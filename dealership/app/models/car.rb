@@ -15,8 +15,8 @@
 #
 
 class Car < ApplicationRecord
-  belongs_to :location
-  belongs_to :salesman
+  belongs_to :location, optional: true
+  belongs_to :salesman, optional: true
 
   validates_presence_of :make, :model, :price
 end

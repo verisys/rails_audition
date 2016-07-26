@@ -1,0 +1,14 @@
+<div class="container-fluid">
+	<% if @cars.length > 0 %>
+		<% @cars.each do |car| %>
+			<div class="car">
+				<p>Make: <%= car.make %></p>
+				<p>Model: <%= car.model %></p>
+				<p>Price: <%= car.price %></p>
+				<%= link_to "More details", location_car_path(location_id: car.location.id, id: car.id) %>
+			</div>
+		<% end %>
+	<% else %>
+		<h2 class="text-center">No cars!</h2>
+	<% end %>
+</div>

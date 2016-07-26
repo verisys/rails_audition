@@ -1,2 +1,14 @@
-<h1>Locations#index</h1>
-<p>Find me in app/views/locations/index.html.erb</p>
+<h2 class="text-center">All Locations</h2>
+<% @locations.each do |location| %>
+	<div class="text-center location">
+		<h3><%= location.address_line_1 %></h3>
+		<h3><%= location.address_line_2 %></h3>
+		<h3><%= "#{location.city}, #{location.state} #{location.zip_code}" %></h3>
+		<span><%= link_to "See all cars", location_cars_path(location) %></span>
+		<% if current_user.type == "Owner" %>
+			| <span><%= link_to "Delete", location_path(location), method: :delete %></span>
+		<% elsif current_user.type == "InventoryManager" %>
+			| <span><%= link_to "Add a new car", new_location_car_path(location) %></span>
+		<% end %>
+	</div>
+<% end %>

@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(version: 20160725000259) do
     t.string   "model",                       null: false
     t.integer  "price",                       null: false
     t.string   "year"
-    t.string   "mileage"
+    t.integer  "mileage"
     t.boolean  "sold",        default: false
+    t.integer  "sale_price"
     t.integer  "location_id"
     t.integer  "salesman_id"
     t.datetime "created_at",                  null: false

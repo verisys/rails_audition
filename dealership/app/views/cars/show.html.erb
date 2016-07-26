@@ -1,2 +1,22 @@
-<h1>Cars#show</h1>
-<p>Find me in app/views/cars/show.html.erb</p>
+<div class="container-fluid">
+	<h3>Make: <%= @car.make %></h3>
+	<h3>Model: <%= @car.model %></h3>
+	<h3>Price: <%= @car.price %></h3>
+	<h3>Year: <%= @car.year %></h3>
+	<h3>Mileage: <%= @car.mileage %></h3>
+	<% if @car.sold %>
+		<h2>SOLD</h2>
+		<h3>Sale Price: <%= @car.sale_price %></h3>
+		<h3>Sold By: <%= @car.salesman.name %></h3>
+	<% end %>
+	<h3>Location:</h3>
+	<p><%= @location.address_line_1 %></p>
+	<p><%= @location.address_line_2 %></p>
+	<p><%= "#{@location.city}, #{@location.state} #{@location.zip_code}" %></p>
+	<% if current_user.type == "InventoryManager" %>
+		<%= link_to "Delete", location_car_path, method: :delete %> |
+		<%= link_to "Change Location", edit_location_car_path(@location, @car) %>
+	<% elsif current_user.type == "Salesman" && !@car.sold%>
+		<%= link_to "Mark as Sold", location_car_sell_path(@location, @car) %>
+	<% end %>
+</div>
