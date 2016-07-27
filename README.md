@@ -1,9 +1,6 @@
-# Hello, welcome
+# README
 
-## Instructions
+Things you may want to do:
 
-1. Fork this repo
-2. Create a solution for the requested project(s)
-3. Commit changes to your fork
-4. Submit a pull request to this repo
-
+* Setup the system with defaults via rake bootstrap:all
+* Go to localhost:3000/

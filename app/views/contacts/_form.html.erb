@@ -1,0 +1,62 @@
+<%= form_for(contact) do |f| %>
+  <% if contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+      <ul>
+      <% contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="select">
+    <%= f.label :department %>
+    <%= f.collection_select :department_id, Department.all,:id, :name, prompt: true  %>
+  </div>
+
+  <div class="select">
+    <%= f.label :manager %>
+    <%= f.collection_select :manager_id , Contact.all,:id, :name, prompt: true%>
+  </div>
+
+  <div class="field">
+    <%= f.label :business_phone %>
+    <%= f.number_field :business_phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :extension %>
+    <%= f.number_field :extension %>
+  </div>
+
+  <div class="field">
+    <%= f.label :home_phone %>
+    <%= f.number_field :home_phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :emergency_contact %>
+    <%= f.text_field :emergency_contact %>
+  </div>
+
+  <div class="field">
+    <%= f.label :emergency_phone %>
+    <%= f.number_field :emergency_phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :active %>
+    <%= f.check_box :active %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
