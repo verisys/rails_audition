@@ -33,14 +33,14 @@ class UsersController < ApplicationController
     p params
     puts "*** *** *** ********************* ***"
     @user = User.new(user_params)
-    @user.department_id = params[:department_id]
+    @user.department_id = safe_number(params[:department_id])
 
     respond_to do |format|
       if @user.save
+        set_phone_numbers
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
-        puts "*** *** In ELSE ** **"
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -75,6 +75,26 @@ class UsersController < ApplicationController
     # Use callback to share common ivar
     def set_departments
       @departments = Department.all
+    end
+
+    # Grab the phone numbers
+    def set_phone_numbers
+      home_phone = params[:home_phone]
+      business_phone = params[:business_phone]
+      business_phone_ext = params[:business_phone_ext]
+      create_phone_number('Home', home_phone) if home_phone
+      create_phone_number('Business', business_phone, business_phone_ext) if business_phone
+    end
+
+    # create the phone numbers
+    def create_phone_number(phone_type, phone_number, phone_ext = '')
+      phone_number = phone_number + ' x' + phone_ext if phone_ext != ''
+      Phone.create(phone_type: phone_type, number: phone_number, user_id: @user.id)
+    end
+
+    # returns integer type that can be trusted
+    def safe_number(untrusted_input)
+      untrusted_input.to_i
     end
 
     # Use callbacks to share common setup or constraints between actions.
