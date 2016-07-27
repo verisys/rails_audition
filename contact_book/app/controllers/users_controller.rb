@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_departments
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.includes(:department).all
   end
 
   # GET /users/1
@@ -15,9 +16,9 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    @departments = Department.all
-    puts "*** *** *** Calling New Users *** ***"
 
+    puts "*** *** *** Calling New Users *** ***"
+    p @departments
     puts "*** *** *** ********************* ***"
   end
 
@@ -28,13 +29,18 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    puts "*** *** *** Calling Create *** ***"
+    p params
+    puts "*** *** *** ********************* ***"
     @user = User.new(user_params)
+    @user.department_id = params[:department_id]
 
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
+        puts "*** *** In ELSE ** **"
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -66,6 +72,11 @@ class UsersController < ApplicationController
   end
 
   private
+    # Use callback to share common ivar
+    def set_departments
+      @departments = Department.all
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
