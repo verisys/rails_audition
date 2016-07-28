@@ -16,22 +16,17 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-
-    puts "*** *** *** Calling New Users *** ***"
-    p @departments
-    puts "*** *** *** ********************* ***"
   end
 
   # GET /users/1/edit
   def edit
+    @department = get_user_department(params[:id])
+    @phone_numbers = Phone.where(user_id: params[:id]).pluck(:phone_type, :number).to_h
   end
 
   # POST /users
   # POST /users.json
   def create
-    puts "*** *** *** Calling Create *** ***"
-    p params
-    puts "*** *** *** ********************* ***"
     @user = User.new(user_params)
     @user.department_id = safe_number(params[:department_id])
 
@@ -77,6 +72,11 @@ class UsersController < ApplicationController
       @departments = Department.all
     end
 
+    # Get the users department
+    def get_user_department(user_id)
+      User.find(user_id).department
+    end
+
     # Grab the phone numbers
     def set_phone_numbers
       home_phone = params[:home_phone]
@@ -104,6 +104,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name)
+      params.require(:user).permit(:first_name, :last_name, :contact_name, :contact_number)
     end
 end
