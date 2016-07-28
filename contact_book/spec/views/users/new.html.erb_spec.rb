@@ -2,9 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "users/new", type: :view do
   before(:each) do
+    Department.create(name: 'Test Department')
+    @departments = assign(:departments, Department.all)
     assign(:user, User.new(
       :first_name => "MyString",
-      :last_name => "MyString"
+      :last_name => "MyString",
+      :department_id => Department.last.id
     ))
   end
 
