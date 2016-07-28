@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'departments/index'
+
   root to: 'users#index'
   resources :users
   resources :departments
