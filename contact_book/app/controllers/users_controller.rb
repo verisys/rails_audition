@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_departments
+  before_action :departments
 
   # GET /users
   # GET /users.json
@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    phone_numbers
   end
 
   # GET /users/new
@@ -20,8 +21,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @department = get_user_department(params[:id])
-    @phone_numbers = Phone.where(user_id: params[:id]).pluck(:phone_type, :number).to_h
+    @department = user_department(params[:id])
+    phone_numbers
   end
 
   # POST /users
@@ -68,12 +69,12 @@ class UsersController < ApplicationController
 
   private
     # Use callback to share common ivar
-    def set_departments
+    def departments
       @departments = Department.all
     end
 
     # Get the users department
-    def get_user_department(user_id)
+    def user_department(user_id)
       User.find(user_id).department
     end
 
@@ -84,6 +85,11 @@ class UsersController < ApplicationController
       business_phone_ext = params[:business_phone_ext]
       create_phone_number('Home', home_phone) if home_phone
       create_phone_number('Business', business_phone, business_phone_ext) if business_phone
+    end
+
+    # Make users phone numbers available for the view
+    def phone_numbers
+      @phone_numbers = Phone.where(user_id: params[:id]).pluck(:phone_type, :number).to_h
     end
 
     # create the phone numbers
