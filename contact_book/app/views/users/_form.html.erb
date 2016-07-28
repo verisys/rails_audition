@@ -50,6 +50,14 @@
     </div>
   </div>
 
+  <div class="form-group form-inline">
+    <%= f.radio_button(:user_active, true) %>
+    <%= label_tag(:active, 'User Is Active', class: 'radio-inline') %>
+    <div></div>
+    <%= f.radio_button(:user_active, false) %>
+    <%= label_tag(:not_active, 'User Is NOT Active', class: 'radio-inline') %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
