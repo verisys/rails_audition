@@ -4,7 +4,6 @@
 <%= render partial: 'shower', locals: { vehicle: @vehicle } %>
 
 <% if @vehicle.sold %>
-    <p><% @sale.user.name %></p>
     Vehicle Sold |
 <% else %>
     <%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
