@@ -28,7 +28,7 @@
         <td><%= vehicle.location.address %></td>
         <td>
           <% if current_user.position.downcase == 'salesman' && !vehicle.sold %>
-            <%= link_to 'Mark Sold', '#', class: 'btn btn-xs btn-success' %>
+            <%= button_to 'Mark Sold', selling_path(vehicle: vehicle), class: 'btn btn-xs btn-success' %>
           <% end %>
         </td>
         <td>

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'sales/sold'
+  post '/selling', to: 'sales#selling'
+  post '/sales/sold', to: 'sales#sale_complete'
+
   root to: 'static_pages#home'
   resources :vehicles
   resources :locations
