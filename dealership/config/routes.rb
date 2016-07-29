@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
+  root to: 'static_pages#home'
   resources :vehicles
   resources :locations
-  root to: 'static_pages#home'
 
   get '/welcome', to: 'welcome#index'
 

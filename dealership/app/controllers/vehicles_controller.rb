@@ -14,6 +14,7 @@ class VehiclesController < ApplicationController
 
   # GET /vehicles/new
   def new
+    @locations = Location.all
     @vehicle = Vehicle.new
   end
 
@@ -25,6 +26,7 @@ class VehiclesController < ApplicationController
   # POST /vehicles.json
   def create
     @vehicle = Vehicle.new(vehicle_params)
+    @vehicle.location_id = params[:location_id]
 
     respond_to do |format|
       if @vehicle.save
