@@ -3,6 +3,10 @@
 
 <%= render partial: 'shower', locals: { vehicle: @vehicle } %>
 
-
-<%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
+<% if @vehicle.sold %>
+    <p><% @sale.user.name %></p>
+    Vehicle Sold |
+<% else %>
+    <%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
+<% end %>
 <%= link_to 'Back', vehicles_path %>
