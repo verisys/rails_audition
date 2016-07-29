@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="page-header">
+  Dealership Locations
+</h1>
+
+<span class="badge">
+  <%= link_to 'New Location', new_location_path %>
+</span>
+
+<ul class="list-group">
+  <% @locations.each do |location| %>
+      <li class="list-group-item left">
+        <%= location.address %>
+        <span class="badge">
+          <%= link_to '- Edit', edit_location_path(location) %>
+        </span>
+        <span class="badge">
+          <%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </span>
+      </li>
+  <% end %>
+
+</ul>
+
+<%= link_to 'New Location', new_location_path %>
+
+
+
