@@ -1,24 +1,19 @@
-# README
+# Dealership App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Clone Repo
+### Run `rake db:migrate`
+### Run `rake db:seed`
+* Seed file contains built models
+* * Including Users, Locations, Vehicles 
+### Log in using one of the created users
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+-----------------
+* Email: `user1@email.com`
+* Password: `password`
+-----------------
+* Email: `user2@email.com`
+* Password: `password`
+-----------------
+* Email: `user3@email.com`
+* Password: `password`
+-----------------
