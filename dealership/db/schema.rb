@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729022456) do
+ActiveRecord::Schema.define(version: 20160729040450) do
 
   create_table "locations", force: :cascade do |t|
     t.string   "address",    default: "To Be Determined"
@@ -36,8 +36,9 @@ ActiveRecord::Schema.define(version: 20160729022456) do
     t.string   "model"
     t.float    "list_price"
     t.integer  "location_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "sold",        default: false
     t.index ["location_id"], name: "index_vehicles_on_location_id"
     t.index ["make"], name: "index_vehicles_on_make"
     t.index ["model"], name: "index_vehicles_on_model"

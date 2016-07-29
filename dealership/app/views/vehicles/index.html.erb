@@ -3,7 +3,7 @@
 <h1>Vehicles</h1>
 
 <% if current_user.position.downcase == 'inventory manager' %>
-    <%= link_to 'New Vehicle', new_vehicle_path, class: 'btn btn-sm' %>
+    <%= link_to 'New Vehicle', new_vehicle_path, class: 'btn btn-sm btn-info' %>
 <% end %>
 
 
@@ -15,18 +15,29 @@
       <th>Model</th>
       <th>Price</th>
       <th>Location</th>
-      <th colspan="2"></th>
+      <th colspan="1"></th>
     </tr>
   </thead>
   <tbody>
-    <% @vehicles.each do |vehicle| %>
+    <% @vehicles.each_with_index do |vehicle, index| %>
       <tr>
-        <td>Sold/Available</td>
+        <td><%= index + 1 %></td>
         <td><%= link_to vehicle.make, vehicle %></td>
         <td><%= link_to vehicle.model, vehicle %></td>
         <td><%= vehicle.list_price %></td>
         <td><%= vehicle.location.address %></td>
-        <td><%= link_to 'Edit', edit_vehicle_path(vehicle) %></td>
+        <td>
+          <% if current_user.position.downcase == 'salesman' && !vehicle.sold %>
+            <%= link_to 'Mark Sold', '#', class: 'btn btn-xs btn-success' %>
+          <% end %>
+        </td>
+        <td>
+          <% if vehicle.sold %>
+            Sold!
+          <% else %>
+              <%= link_to 'Edit', edit_vehicle_path(vehicle) %>
+          <% end %>
+        </td>
         <td><%= link_to 'Destroy', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

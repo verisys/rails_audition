@@ -14,12 +14,13 @@ class VehiclesController < ApplicationController
 
   # GET /vehicles/new
   def new
-    @locations = Location.all
+    vehicle_locations
     @vehicle = Vehicle.new
   end
 
   # GET /vehicles/1/edit
   def edit
+    vehicle_locations
   end
 
   # POST /vehicles
@@ -64,6 +65,11 @@ class VehiclesController < ApplicationController
   end
 
   private
+    # Set vehicle locations ivar
+    def vehicle_locations
+      @locations = Location.all
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_vehicle
       @vehicle = Vehicle.find(params[:id])

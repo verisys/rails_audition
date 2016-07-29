@@ -9,11 +9,9 @@
       </div>
   <% end %>
 
-  <% if @user.position.downcase == 'inventory manager' %>
-      <div class="panel-body">
-        <%= link_to 'Vehicles', vehicles_path %>
-      </div>
-  <% end %>
+  <div class="panel-body">
+    <%= link_to 'Vehicles', vehicles_path %>
+  </div>
 
   <div class="panel-body">
     Panel content
