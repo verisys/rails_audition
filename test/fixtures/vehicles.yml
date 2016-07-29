@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+charger:
+  location: morgan
+  year: 2016
+  make: Dodge
+  model: Charger
+  price: 41999.99
+  mpg_city: 2
+  mpg_hwy: 3
+  color: Black
+  stock: 12345
+  vin: 1234HFKDFHFIVDSD
+  image_url: "http://www.dodge.com/"
+  sold: false
+  sell_price: nil
+  sell_notes: nil
+
+mustang:
+  location: davis
+  year: 2016
+  make: Ford
+  model: Mustang
+  price: 42999.99
+  mpg_city: 4
+  mpg_hwy: 5
+  color: Yellow
+  stock: 23123
+  vin: 343FDFHIG3434FS
+  image_url: "http://www.ford.com/"
+  sold: false
+  sell_price: nil
+  sell_notes: nil

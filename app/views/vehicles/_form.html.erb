@@ -1,0 +1,44 @@
+<%= form_for(@vehicle) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :stock %>
+  <%= f.text_field :stock, class: 'form-control' %>
+
+  <%= f.label :vin %>
+  <%= f.text_field :vin, class: 'form-control' %>
+
+  <%= f.label :year %>
+  <%= f.text_field :year, class: 'form-control' %>
+
+  <%= f.label :make %>
+  <%= f.text_field :make, class: 'form-control' %>
+
+  <%= f.label :model %>
+  <%= f.text_field :model, class: 'form-control' %>
+
+  <%= f.label :color %>
+  <%= f.text_field :color, class: 'form-control' %>
+
+  <%= f.label :price %>
+  <%= f.text_field :price, class: 'form-control' %>
+
+  <%= f.label :mpg_city %>
+  <%= f.text_field :mpg_city, class: 'form-control' %>
+
+  <%= f.label :mpg_hwy %>
+  <%= f.text_field :mpg_hwy, class: 'form-control' %>
+
+  <%= f.label :image_url %>
+  <%= f.text_field :image_url, class: 'form-control' %>
+
+  <%= f.collection_select :location_id, Location.order(:name), :id, :name, include_blank: false %>
+
+  <%= f.hidden_field(:sell_price) %>
+  <%= f.hidden_field(:sell_notes) %>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>
+
+<div>
+  <%= link_to "Cancel", current_user %>
+</div>

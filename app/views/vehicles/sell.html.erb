@@ -1,0 +1,15 @@
+<% provide(:title, "Sell #{@vehicle.year} #{@vehicle.make} #{@vehicle.model}") %>
+<% provide(:button_text, 'Sell Vehicle') %>
+<h1>Sell Vehicle</h1>
+<h2><%= "#{@vehicle.year} #{@vehicle.make} #{@vehicle.model}" %></h2>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="vehicle-image"><%= image_tag(@vehicle.image_url, alt: "Vehicle Image", height: 360, width: 600) %></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= render 'sell_form' %>
+  </div>
+</div>

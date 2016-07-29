@@ -1,0 +1,12 @@
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+    </aside>
+  </div>
+<% else %>
+  <h1>Auto Dealership</h1>
+  <h2>Audition</h2>
+<% end %>
