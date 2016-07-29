@@ -2,11 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "vehicles/show", type: :view do
   before(:each) do
+    location = Location.create(address: 'Test Address')
     @vehicle = assign(:vehicle, Vehicle.create!(
       :make => "Make",
       :model => "Model",
       :list_price => 2.5,
-      :location => nil
+      :location => location
     ))
   end
 
