@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :vehicles
   resources :locations
   root to: 'static_pages#home'
 
