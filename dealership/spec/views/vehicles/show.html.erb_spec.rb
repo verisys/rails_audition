@@ -16,6 +16,6 @@ RSpec.describe "vehicles/show", type: :view do
     expect(rendered).to match(/Make/)
     expect(rendered).to match(/Model/)
     expect(rendered).to match(/2.5/)
-    expect(rendered).to match(//)
+    expect(rendered).to match(/Back/)
   end
 end

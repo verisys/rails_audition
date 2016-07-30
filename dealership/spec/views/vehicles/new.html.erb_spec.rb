@@ -23,7 +23,7 @@ RSpec.describe "vehicles/new", type: :view do
 
       assert_select "input#vehicle_list_price[name=?]", "vehicle[list_price]"
 
-      # assert_select "input#vehicle_location_id[name=?]", "vehicle[location_id]"
+      assert_select "select#location_id option", 'Test Address'
     end
   end
 end
