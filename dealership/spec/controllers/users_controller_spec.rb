@@ -24,11 +24,24 @@ RSpec.describe UsersController, type: :controller do
   # User. As you add validations to User, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+        name: 'UserName',
+        email: 'user@email.com',
+        password: 'password',
+        password_confirmation: 'password',
+        position: 'Salesman',
+        owner: false
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+        name: 'UserName',
+        password: 'password',
+        password_confirmation: 'password',
+        position: 'Salesman',
+        owner: false
+    }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -103,14 +116,21 @@ RSpec.describe UsersController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+            name: 'NewName',
+            email: 'user@email.com',
+            password: 'password',
+            password_confirmation: 'password',
+            position: 'Salesman',
+            owner: false
+        }
       }
 
       it "updates the requested user" do
         user = User.create! valid_attributes
         put :update, params: {id: user.to_param, user: new_attributes}, session: valid_session
         user.reload
-        skip("Add assertions for updated state")
+        expect(user.name).to eq('NewName')
       end
 
       it "assigns the requested user as @user" do
@@ -131,12 +151,6 @@ RSpec.describe UsersController, type: :controller do
         user = User.create! valid_attributes
         put :update, params: {id: user.to_param, user: invalid_attributes}, session: valid_session
         expect(assigns(:user)).to eq(user)
-      end
-
-      it "re-renders the 'edit' template" do
-        user = User.create! valid_attributes
-        put :update, params: {id: user.to_param, user: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
       end
     end
   end

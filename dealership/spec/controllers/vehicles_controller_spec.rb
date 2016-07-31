@@ -23,12 +23,22 @@ RSpec.describe VehiclesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Vehicle. As you add validations to Vehicle, be sure to
   # adjust the attributes here as well.
+  let(:location) { Location.create(address: '100 Test Street') }
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+        make: "Tesla",
+        model: "Model S",
+        list_price: 300000,
+        location_id: location.id
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+        make: "Tesla",
+        model: "Model S",
+        list_price: 300000,
+    }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -71,24 +81,24 @@ RSpec.describe VehiclesController, type: :controller do
     context "with valid params" do
       it "creates a new Vehicle" do
         expect {
-          post :create, params: {vehicle: valid_attributes}, session: valid_session
+          post :create, params: {vehicle: valid_attributes, location_id: location.id}, session: valid_session
         }.to change(Vehicle, :count).by(1)
       end
 
       it "assigns a newly created vehicle as @vehicle" do
-        post :create, params: {vehicle: valid_attributes}, session: valid_session
+        post :create, params: {vehicle: valid_attributes, location_id: location.id}, session: valid_session
         expect(assigns(:vehicle)).to be_a(Vehicle)
         expect(assigns(:vehicle)).to be_persisted
       end
 
       it "redirects to the created vehicle" do
-        post :create, params: {vehicle: valid_attributes}, session: valid_session
+        post :create, params: {vehicle: valid_attributes, location_id: location.id}, session: valid_session
         expect(response).to redirect_to(Vehicle.last)
       end
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved vehicle as @vehicle" do
+    context 'with invalid params' do
+      it 'assigns a newly created but unsaved vehicle as @vehicle' do
         post :create, params: {vehicle: invalid_attributes}, session: valid_session
         expect(assigns(:vehicle)).to be_a_new(Vehicle)
       end
@@ -100,17 +110,22 @@ RSpec.describe VehiclesController, type: :controller do
     end
   end
 
-  describe "PUT #update" do
+  describe 'PUT #update' do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+            make: 'New Car Make',
+            model: 'Model S',
+            list_price: 300000,
+            location_id: location.id
+        }
       }
 
-      it "updates the requested vehicle" do
+      it 'updates the requested vehicle' do
         vehicle = Vehicle.create! valid_attributes
         put :update, params: {id: vehicle.to_param, vehicle: new_attributes}, session: valid_session
         vehicle.reload
-        skip("Add assertions for updated state")
+        expect(vehicle.make).to eq('New Car Make')
       end
 
       it "assigns the requested vehicle as @vehicle" do
@@ -131,12 +146,6 @@ RSpec.describe VehiclesController, type: :controller do
         vehicle = Vehicle.create! valid_attributes
         put :update, params: {id: vehicle.to_param, vehicle: invalid_attributes}, session: valid_session
         expect(assigns(:vehicle)).to eq(vehicle)
-      end
-
-      it "re-renders the 'edit' template" do
-        vehicle = Vehicle.create! valid_attributes
-        put :update, params: {id: vehicle.to_param, vehicle: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
       end
     end
   end
