@@ -3,6 +3,9 @@
 # Get all contacts
 curl -i -XGET 'http://localhost:3000/api/v1/contacts'
 
+# Get all contacts that match the query value
+curl -i -XGET 'http://localhost:3000/api/v1/contacts?dept=Sales'
+
 # Get one contact
 curl -i -XGET 'http://localhost:3000/api/v1/contacts/1'
 

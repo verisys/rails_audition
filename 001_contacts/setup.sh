@@ -31,4 +31,4 @@ sudo apt-get -y install docker.io
 # POST api/v1/contact/   <-- add a contact
 # GET api/v1/contacts/:id  <-- get a contact
 # PUT api/v1/contacts/:id  <-- replace item
-# POST api/v1/contacts/search { dept:"cur" or id:123 }
+# GET api/v1/contacts?dept=:dept <-- get all values from a department

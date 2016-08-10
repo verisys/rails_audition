@@ -1,8 +1,15 @@
 class Api::V1::ContactsController < ApplicationController
   respond_to :json
+  # currently only searching based on dept is working
   def list
-    @contacts = Contact.all
-    render json: @contacts
+    department = params[:dept]
+    if department
+      @contacts = Contact.where(dept: department)
+      render json: @contacts
+    else
+      @contacts = Contact.all
+      render json: @contacts
+    end
   end
   def get
     @contact = Contact.find(params[:id])
