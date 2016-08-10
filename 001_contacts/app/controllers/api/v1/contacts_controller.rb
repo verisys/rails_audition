@@ -16,4 +16,13 @@ class Api::V1::ContactsController < ApplicationController
       render json: @contact.errors, status: :unprocessable_entity
     end
   end
+  def update
+    @contact = Contact.find(params[:id])
+    
+    if @contact.update_attributes(params[:contact])
+      head :no_content
+    else
+      render json: @contact.errors, status: :unprocessable_entity
+    end
+  end
 end
