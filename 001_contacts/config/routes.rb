@@ -1,4 +1,12 @@
 ContactBook::Application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      post '/contacts', :to => 'contacts#add'
+      get '/contacts', :to => 'contacts#list'
+      get '/contacts/:id', :to => 'contacts#get'
+    end
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

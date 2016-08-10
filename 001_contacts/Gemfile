@@ -7,6 +7,8 @@ gem 'rails', '3.2.12'
 
 gem 'sqlite3'
 
+# Serializer for JSON
+gem 'active_model_serializers'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -36,3 +38,5 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+gem 'test-unit'

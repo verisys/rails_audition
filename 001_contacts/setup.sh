@@ -21,3 +21,14 @@ sudo apt-get -y install docker.io
 # cd /vagrant
 # sudo docker build -t rails .
 # sudo docker run -it -p 3000:3000 -v /vagrant:/usr/src/app rails
+
+
+# rails generate model Contact 
+# rake db:migrate
+# rails g serializer Contacts
+
+# GET api/v1/contacts/   <-- list contacts
+# POST api/v1/contact/   <-- add a contact
+# GET api/v1/contacts/:id  <-- get a contact
+# PUT api/v1/contacts/:id  <-- replace item
+# POST api/v1/contacts/search { dept:"cur" or id:123 }
