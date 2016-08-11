@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>View a Department</title>
     <style>
       table, th, td {
       border: 1px solid black;
@@ -16,7 +17,7 @@
         $( "#load_dept" ).click(function() {
           $.ajax({url: "api/v1/contacts?dept=" + $("#dept").val(),
             success: function(result){
-              contact_table = "<table>"
+              contact_table = "<table>";
 	      contact_table += "<tr>";
 	      contact_table += "<th>Id</th>";
 	      contact_table += "<th>Active</th>";
@@ -45,7 +46,6 @@
         });
       });
     </script>
-    <title>View a Department</title>
   </head>
   <body>
     <h1>View a Department</h1>

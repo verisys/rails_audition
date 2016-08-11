@@ -2,10 +2,54 @@
 <html>
   <head>
     <title>Add a Contact</title>
+    <script
+       src="https://code.jquery.com/jquery-3.1.0.js"
+       integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="
+       crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function(){
+        $( "#add_contact" ).click(function() {
+          data = { "contact": 
+                    {"name":$("#name").val(),
+                     "dept":$("#dept").val(),
+                     "business_phone":$("#bphone").val(),
+                     "business_phone_ext":$("#bphone_ext").val(),
+                     "home_phone":$("#hphone").val(),
+                     "emerg_contact_name":$("#econtact_name").val(),
+                     "emerg_contact_number":$("#econtact_num").val(),
+                     "active":true }};
+          $.ajax({
+            type: "POST",
+            url: "api/v1/contacts",
+            data: data,
+            success: function(result){
+                     console.log("success");
+                     },
+            error: function() {
+                     console.log("error");
+                   }});
+        });
+      });
+    </script>
   </head>
   <body>
-    Add a Contact
+    <h1>Add a Contact</h1>
 
+    <p>Name: <input id="name" type="text"></p>
+    <p>Dept: <input id="dept" type="text"></p>
+    <p>
+      Business Phone: <input id="bphone" type="text">
+      Ext: <input id="bphone_ext" type="text">
+    </p>
+    <p>Home Phone: <input id="hphone" type="text"></p>
+    <p>
+      Emergency Contact: <input id="econtact_name" type="text">
+      Phone Number: <input id="econtact_num" type="text">
+    </p>
+
+    <p><button id="add_contact">Add</button></p>
+    
+    <hr>
     <ul>
       <li><a href="/">home</a></li>
       <li><a href="edit.html">edit a contact</a></li>
