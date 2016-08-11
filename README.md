@@ -32,3 +32,7 @@ $ sudo docker run -it -p 3000:3000 rails
 ```
 http://localhost:3000
 ```
+* To run tests:
+```
+$ sudo docker run -it -p 3000:3000 -v /vagrant:/usr/src/app rails rake test
+```
