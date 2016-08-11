@@ -36,7 +36,6 @@
              return;
            $.ajax({url: "api/v1/contacts/" + $("#id").val(),
              success: function(result) {
-               console.log(result);
                $("#name").val(result["name"]);
                $("#active").val(result["active"]);
                $("#dept").val(result["dept"]);
