@@ -1,11 +1,63 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <style>
+      table, th, td {
+      border: 1px solid black;
+      padding: 8px;
+      }
+    </style>
+    <script
+       src="https://code.jquery.com/jquery-3.1.0.js"
+       integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="
+       crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function(){
+        $( "#load_dept" ).click(function() {
+          $.ajax({url: "api/v1/contacts?dept=" + $("#dept").val(),
+            success: function(result){
+              contact_table = "<table>"
+	      contact_table += "<tr>";
+	      contact_table += "<th>Id</th>";
+	      contact_table += "<th>Active</th>";
+	      contact_table += "<th>Name</th>";
+	      contact_table += "<th>Business Phone</th>";
+	      contact_table += "<th>Home Phone</th>";
+	      contact_table += "<th>Emergency Contact</th>";
+	      contact_table += "</tr>";
+              for(i=0; i < result["contacts"].length ; i++) {
+                 c_res = result["contacts"][i];
+	         contact_table += "<tr>";
+	         contact_table += "<td>" + c_res["id"] + "</td>";
+	         contact_table += "<td>" + c_res["active"] + "</td>";
+	         contact_table += "<td>" + c_res["name"] + "</td>";
+	         contact_table += "<td>" + c_res["business_phone"] + " ext. " + c_res["business_phone_ext"] + "</td>";
+	         contact_table += "<td>" + c_res["home_phone"] + "</td>";
+	         contact_table += "<td>" + c_res["emerg_contact_name"] + " (" + c_res["emerg_contact_number"] + " )" + "</td>";
+                 contact_table += "</tr>";
+              }			   
+	      contact_table += "</table>";
+	      $("#contacts").html(contact_table);
+            }, 
+            error: function() {
+              $("#contacts").html("Error");
+           }});
+        });
+      });
+    </script>
     <title>View a Department</title>
   </head>
   <body>
-    View a Department
+    <h1>View a Department</h1>
 
+    <p>
+      Dept Name: <input id="dept" type="text" name="dept">
+      <button id="load_dept">Load</button>
+    </p>
+
+    <div id="contacts"></div>
+
+    <hr>
     <ul>
       <li><a href="/">home</a></li>
       <li><a href="add.html">add a contact</a></li>
