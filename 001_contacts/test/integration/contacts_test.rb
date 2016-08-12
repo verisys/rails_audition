@@ -68,4 +68,18 @@ class ContactsTest < ActionController::IntegrationTest
     assert_equal sorted_field(res, "emerg_contact_name"), ["Don Juan", "George Washington", "John Adams", "Neil Diamond"]
     assert_equal sorted_field(res, "emerg_contact_number"), ["345-678-9101", "555-555-5553", "678-910-1112", "910-111-2134"]
   end
+  def test_update_contact
+    # get an id
+    get '/api/v1/contacts'
+    res = JSON.parse(@response.body)
+    id = res["contacts"][0]["id"]
+
+    # update the name to something not in the dataset
+    put "/api/v1/contacts/#{id}", {"contact" => {"name" => "Michael Jackson"}}
+
+    # get the entry and confirm that the name changed
+    get "/api/v1/contacts/#{id}"
+    res = JSON.parse(@response.body)
+    assert_equal "Michael Jackson", res["name"]
+  end
 end
