@@ -1,0 +1,81 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Contacts</h1>
+
+<%= form_for_filterrific(@filterrific) do |f| %>
+  <table>
+	  <tr>
+		  <td>Search
+		  	<%= f.text_field :search_query, :class => 'filterrific-periodically-observed form-control'%>
+		  </td>
+		  <td>Department
+			  <%= f.select :with_department_id,
+           			   @filterrific.select_options[:with_department_id],
+           			   { :include_blank => '- Any -' },
+           			   { :class => 'form-control' }
+			  %>
+		  </td>
+		  <td>
+			  Active
+			  <%= f.select :with_active,
+           			   @filterrific.select_options[:with_active],
+           			   { :include_blank => '- Any -' },
+           			   { :class => 'form-control' }
+			  %>
+		  <td>
+			  <%= f.submit 'Filter' %>
+		  </td>
+		  <td>
+			  <%= link_to "Reset filters", reset_filterrific_url, :class => 'btn btn-default btn-sm'%>
+		  </td>
+	  </tr>
+  </table>
+ 
+<% end %> 
+
+<table class="table">
+  <thead>
+    <tr class="header">
+		<th>First name</th>
+      <th>Last name</th>
+      <th>Business phone</th>
+      <th>Business phone ext</th>
+      <th>Home phone</th>
+      <th>Emergency contact name</th>
+      <th>Emergency contact number</th>
+      <th>Active</th>
+      <th>Department</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contacts.each do |contact| %>
+      <tr class="row">
+          
+        <td><%= contact.first_name %></td>
+        <td><%= contact.last_name %></td>
+        <td><%= contact.business_phone %></td>
+        <td><%= contact.business_phone_ext %></td>
+        <td><%= contact.home_phone %></td>
+        <td><%= contact.emergency_contact_name %></td>
+        <td><%= contact.emergency_contact_number %></td>
+        <td><%= contact.active %></td>
+        <td><%= contact.department.name %></td>
+        <td><%= link_to 'Edit', edit_contact_path(contact) %></td>        
+		<td>
+			<% if contact.active then %>
+				<%= form_for contact do |f| %>
+					<%= f.hidden_field :active, value: false %>
+					<%= f.submit 'Inactivate', data: { confirm: 'Are you sure you want to inactivate this user?' } %>
+				<% end %>
+			<% end %>
+		</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Contact', new_contact_path %>

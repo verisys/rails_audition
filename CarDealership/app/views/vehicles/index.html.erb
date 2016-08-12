@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Vehicles</h1>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Make</th>
+      <th>Model</th>
+	  <th>Price</th>
+	  <th>Location</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vehicles.each do |vehicle| %>
+      <tr>
+        <td><%= vehicle.make %></td>
+        <td><%= vehicle.model %></td>
+		<td><%= number_to_currency(vehicle.price) %></td>
+		<td><%= vehicle.location.name %></td>
+		<td><%= link_to 'Show', vehicle %></td>
+        <% if admin_user %>
+		<td><%= link_to 'Edit', edit_vehicle_path(vehicle) %></td>
+        <td><%= link_to 'Delete', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if admin_user %>
+<%= link_to 'New Vehicle', new_vehicle_path %>
+<% end %>

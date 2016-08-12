@@ -1,0 +1,11 @@
+Car Dealership App
+========================
+
+This is a test app and has a number of known issues.  These include:
+
+- Tests are not complete
+- Needs more security scrutiny if it were going live
+- Not tested for mass-assignment hacks and other rails vulnerabilities
+- Email generation for new users not tested
+- Models are just a barebones minimum.  There would be a lot more data in a live app
+- Could look and act a lot better with some UX design
