@@ -74,12 +74,47 @@ class ContactsTest < ActionController::IntegrationTest
     res = JSON.parse(@response.body)
     id = res["contacts"][0]["id"]
 
-    # update the name to something not in the dataset
-    put "/api/v1/contacts/#{id}", {"contact" => {"name" => "Michael Jackson"}}
+    # update the data to things not in the dataset
+    put "/api/v1/contacts/#{id}", {"contact" => {
+        "name" => "Michael Jackson",
+        "dept" => "Dancing",
+        "business_phone" => "1-800-ima-nerd",
+        "business_phone_ext" => "foo",
+        "home_phone" => "1-800-ima-cool",
+        "emerg_contact_name"=>"Donald Trump",
+        "emerg_contact_number"=>"1-800-iam-rich"}}
 
-    # get the entry and confirm that the name changed
+    # get the entry and confirm that the data changed
     get "/api/v1/contacts/#{id}"
     res = JSON.parse(@response.body)
     assert_equal "Michael Jackson", res["name"]
+    assert_equal "Dancing", res["dept"]
+    assert_equal "1-800-ima-nerd", res["business_phone"]
+    assert_equal "foo", res["business_phone_ext"]
+    assert_equal "1-800-ima-cool", res["home_phone"]
+    assert_equal "Donald Trump", res["emerg_contact_name"]
+    assert_equal "1-800-iam-rich", res["emerg_contact_number"]
+  end
+  def test_update_contact_active
+    # get an id
+    get '/api/v1/contacts'
+    res = JSON.parse(@response.body)
+    id = res["contacts"][0]["id"]
+
+    # update active to true (It might be true alread but this way we are sure)
+    put "/api/v1/contacts/#{id}", {"contact" => {"active" => true}}
+
+    # get the entry and confirm that it is true
+    get "/api/v1/contacts/#{id}"
+    res = JSON.parse(@response.body)
+    assert_equal true, res["active"]
+
+    # now, in case it was true originally, lets change it to false
+    put "/api/v1/contacts/#{id}", {"contact" => {"active" => false}}
+
+    # get the entry and confirm that it is false
+    get "/api/v1/contacts/#{id}"
+    res = JSON.parse(@response.body)
+    assert_equal false, res["active"]
   end
 end
