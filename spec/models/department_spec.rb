@@ -1,9 +1,8 @@
 require 'rails_helper'
+require 'support/validation_examples'
 
 describe Department, :type => :model do
-  it 'validates required fields' do
-    department = Department.create
-    expect(department.valid?).to be_falsey
-    expect([:name]).to eq(department.errors.keys)
-  end
+  subject { described_class.new }
+
+  include_examples 'required attributes example', [:name]
 end

@@ -1,9 +1,8 @@
 require 'rails_helper'
+require 'support/validation_examples'
 
 describe User, :type => :model do
-  it 'validates required fields' do
-    user = User.create
-    expect(user.valid?).to be_falsey
-    expect([:first_name,:last_name]).to eq(user.errors.keys)
-  end
+  subject { described_class.new }
+
+  include_examples 'required attributes example', [:first_name, :last_name]
 end
