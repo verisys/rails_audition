@@ -1,0 +1,2 @@
+json.extract! contact, :id, :department_id, :name, :business_phone, :home_phone, :emergency_contact_name, :emergency_contact_phone, :created_at, :updated_at
+json.url contact_url(contact, format: :json)
