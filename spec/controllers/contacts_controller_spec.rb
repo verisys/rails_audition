@@ -1,9 +1,14 @@
+require 'factory_girl'
 require 'rails_helper'
 
 RSpec.describe ContactsController, type: :controller do
+  before(:each) do
+    @department = FactoryGirl.create(:department)
+  end
+
   let(:valid_attributes) {
     {
-      :department_id => 1,
+      :department_id => @department.id,
       :name => 'Joe Hawkins',
       :business_phone => '801 555 1234',
       :home_phone => '801 999 1234',
