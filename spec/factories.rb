@@ -4,10 +4,10 @@ FactoryGirl.define do
   factory :contact do
     department
     sequence(:name) { |n| "Contact #{n}" }
-    business_phone '801 555 5555'
-    home_phone '801 555 7777'
+    business_phone '801-555-5555'
+    home_phone '801-555-7777'
     emergency_contact_name 'Contact Name'
-    emergency_contact_phone '801 555 8888'
+    emergency_contact_phone '801-555-8888'
   end
 
   factory :department do

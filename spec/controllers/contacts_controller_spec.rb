@@ -11,10 +11,10 @@ RSpec.describe ContactsController, type: :controller do
     {
       :department_id => @department.id,
       :name => 'Joe Hawkins',
-      :business_phone => '801 555 1234',
-      :home_phone => '801 999 1234',
-      :emergency_contact_name => 'Wife Hawkins',
-      :emergency_contact_phone => '801 747 1234'
+      :business_phone => '801-555-1234',
+      :home_phone => '801-999-1234',
+      :emergency_contact_name => 'Foo Bar',
+      :emergency_contact_phone => '801-747-1234'
     }
   }
 
