@@ -3,7 +3,8 @@ require 'rails_helper'
 
 RSpec.describe ContactsController, type: :controller do
   before(:each) do
-    @department = FactoryGirl.create(:department)
+    @user = FactoryGirl.create(:user)
+    @department = FactoryGirl.create(:department, supervisor: @user)
   end
 
   let(:valid_attributes) {
@@ -28,7 +29,7 @@ RSpec.describe ContactsController, type: :controller do
     }
   }
 
-  let(:valid_session) { {} }
+  let(:valid_session) { { user_id: @user.id } }
 
   describe 'GET #index' do
     it 'assigns all contacts as @contacts' do
@@ -48,15 +49,20 @@ RSpec.describe ContactsController, type: :controller do
 
   describe 'GET #new' do
     it 'assigns a new contact as @contact' do
-      get :new, params: {}, session: valid_session
+      get :new, {}, valid_session
       expect(assigns(:contact)).to be_a_new(Contact)
+    end
+
+    it 'assigns the generated department as @department' do
+      get :new, {}, valid_session
+      expect(assigns(:department)).to eq(@department)
     end
   end
 
   describe 'GET #edit' do
     it 'assigns the requested contact as @contact' do
       contact = Contact.create! valid_attributes
-      get :edit, id: contact.to_param, session: valid_session
+      get :edit, { id: contact.to_param }, valid_session
       expect(assigns(:contact)).to eq(contact)
     end
   end

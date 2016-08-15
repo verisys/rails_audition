@@ -9,7 +9,7 @@ describe Department, :type => :model do
 
   it 'validates uniqueness of supervisor' do
     user = FactoryGirl.create(:user)
-    department_1 = FactoryGirl.create(:department, supervisor: user)
+    FactoryGirl.create(:department, supervisor: user)
     department_2 = FactoryGirl.build(:department, supervisor: user)
     expect(department_2.valid?).to be_falsey
   end

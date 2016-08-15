@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  before_action :set_contact, only: [:show, :edit, :update]
+  before_action :set_department, only: [:new, :create]
 
   # GET /contacts
   # GET /contacts.json
@@ -15,6 +16,7 @@ class ContactsController < ApplicationController
   # GET /contacts/new
   def new
     @contact = Contact.new
+    @contact.department = @department
   end
 
   # GET /contacts/1/edit
@@ -25,6 +27,7 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     @contact = Contact.new(contact_params)
+    @contact.department = @department
 
     respond_to do |format|
       if @contact.save
@@ -55,6 +58,10 @@ class ContactsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
       @contact = Contact.find(params[:id])
+    end
+
+    def set_department
+      @department = Department.find_by(supervisor_id: current_user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
