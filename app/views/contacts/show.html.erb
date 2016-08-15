@@ -30,5 +30,12 @@
   <%= @contact.emergency_contact_phone %>
 </p>
 
+<p>
+  <strong>Active:</strong>
+  <%= @contact.active %>
+</p>
+
+<%= link_to 'Deactivate', deactivate_contact_path(@contact),
+                :data => {:confirm => 'Are you sure?'}, method: :post %> |
 <%= link_to 'Edit', edit_contact_path(@contact) %> |
 <%= link_to 'Back', contacts_path %>

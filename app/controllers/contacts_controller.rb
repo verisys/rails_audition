@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: [:show, :edit, :update]
+  before_action :set_contact, only: [:show, :edit, :update, :deactivate]
   before_action :set_department, only: [:new, :create]
 
   # GET /contacts
@@ -21,6 +21,22 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1/edit
   def edit
+  end
+
+  # POST /contacts/1/deactivate
+  # POST /contacts/1/deactivate.json
+  def deactivate
+    @contact.active = false
+
+    respond_to do |format|
+      if @contact.save
+        format.html { redirect_to action: :index, notice: 'Contact was successfully deactivated.' }
+        format.json { render :show, status: :ok, location: @contact }
+      else
+        format.html { render :show }
+        format.json { render json: @contact.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # POST /contacts

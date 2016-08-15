@@ -143,4 +143,19 @@ RSpec.describe ContactsController, type: :controller do
     end
   end
 
+  describe 'POST #deactivate' do
+    it 'updates the requested contact' do
+      contact = Contact.create! valid_attributes
+      post :deactivate, id: contact.to_param, session: valid_session
+      contact.reload
+      expect(contact.active).to be_falsey
+    end
+
+    it 'redirects to contact list' do
+      contact = Contact.create! valid_attributes
+      post :deactivate, id: contact.to_param, session: valid_session
+      expect(response).to redirect_to(action: :index, notice: 'Contact was successfully deactivated.')
+    end
+  end
+
 end

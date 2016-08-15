@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815000159) do
+ActiveRecord::Schema.define(version: 20160815041546) do
 
   create_table "contacts", force: true do |t|
     t.integer  "department_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160815000159) do
     t.string   "emergency_contact_phone"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",                  default: true
   end
 
   add_index "contacts", ["department_id"], name: "index_contacts_on_department_id"

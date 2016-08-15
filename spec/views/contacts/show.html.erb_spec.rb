@@ -13,5 +13,6 @@ RSpec.describe 'contacts/show', type: :view do
     expect(rendered).to match(@contact.home_phone)
     expect(rendered).to match(@contact.emergency_contact_name)
     expect(rendered).to match(@contact.emergency_contact_phone)
+    expect(rendered).to match(@contact.active.to_s)
   end
 end

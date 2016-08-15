@@ -15,15 +15,19 @@
 
   <tbody>
     <% @contacts.each do |contact| %>
-      <tr>
+      <tr class="<%= 'deactivated' unless contact.active %>">
         <td><%= contact.department.name %></td>
         <td><%= contact.name %></td>
         <td><%= contact.business_phone %></td>
         <td><%= contact.home_phone %></td>
         <td><%= contact.emergency_contact_name %></td>
         <td><%= contact.emergency_contact_phone %></td>
-        <td><%= link_to 'Show', contact %></td>
-        <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+        <% if contact.active %>
+            <td><%= link_to 'Deactivate', deactivate_contact_path(contact),
+                            :data => {:confirm => 'Are you sure?'}, method: :post %></td>
+            <td><%= link_to 'Show', contact %></td>
+            <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
