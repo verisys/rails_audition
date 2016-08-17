@@ -3,11 +3,13 @@ require 'rails_helper'
 
 RSpec.describe 'contacts/index', type: :view do
   before(:each) do
-    @department = FactoryGirl.create(:department)
+    @user = FactoryGirl.create(:user)
+    @department = FactoryGirl.create(:department, supervisor: @user)
 
     @contact_1 = FactoryGirl.create(:contact, { department: @department })
     @contact_2 = FactoryGirl.create(:contact, { department: @department })
     assign(:contacts, [ @contact_1, @contact_2 ])
+    assign(:current_user, @user)
   end
 
   it 'renders a list of contacts' do

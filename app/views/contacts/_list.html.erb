@@ -1,0 +1,32 @@
+<table>
+  <thead>
+  <tr>
+    <th>Department</th>
+    <th>Name</th>
+    <th>Business phone</th>
+    <th>Home phone</th>
+    <th>Emergency contact name</th>
+    <th>Emergency contact phone</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @contacts.each do |contact| %>
+      <tr class="<%= 'deactivated' unless contact.active %>">
+        <td><%= link_to contact.department.name, department_contacts_path(contact.department) %></td>
+        <td><%= contact.name %></td>
+        <td><%= contact.business_phone %></td>
+        <td><%= contact.home_phone %></td>
+        <td><%= contact.emergency_contact_name %></td>
+        <td><%= contact.emergency_contact_phone %></td>
+        <% if contact.active && user_is_department_supervisor(contact.department.supervisor_id) %>
+            <td><%= link_to 'Deactivate', deactivate_contact_path(contact),
+                            :data => {:confirm => 'Are you sure?'}, method: :post %></td>
+            <td><%= link_to 'Show', contact %></td>
+            <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+        <% end %>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

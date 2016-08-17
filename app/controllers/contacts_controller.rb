@@ -5,6 +5,7 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
+    @current_user = current_user
     @contacts = Contact.all
   end
 

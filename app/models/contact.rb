@@ -2,7 +2,8 @@ class Contact < ActiveRecord::Base
   validates_presence_of :department, :name, :business_phone, :home_phone,
                         :emergency_contact_name, :emergency_contact_phone
   validate :check_emergency_contact_phone
-  validates :business_phone, :home_phone, :emergency_contact_phone, format: { with: /\d{3}-\d{3}-\d{4}/, message: "Invalid phone number (ex: 000-000-0000)" }
+  validates :business_phone, :home_phone, :emergency_contact_phone,
+            format: { with: /\d{3}-\d{3}-\d{4}/, message: "Invalid phone number (ex: 000-000-0000)" }
   belongs_to :department
 
 private
