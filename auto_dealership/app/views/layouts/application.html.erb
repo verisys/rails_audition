@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AutoDealership</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id = topmenu width=100% style="background-color:#ccc; height: 22px; font-size: 15px; padding: 5px;">
+<table width="100%"><tr><td width="33%">
+<% if session[:current_position] != nil %> Welcome: <%= session[:current_user] %> - <%= session[:position_name] %><%end%></td>
+
+	<td><%= link_to 'Home', users_path %><% if session[:current_position] == '1' %>  |  <%= link_to 'Locations', locations_path %><% end %>  |  <%= link_to 'Vehicles', vehicles_path %><% if session[:current_position] == '1' %>  |  <%= link_to 'Positions', positions_path %><% end %></td>
+</tr></table>
+
+</div>
+<%= yield %>
+
+</body>
+</html>

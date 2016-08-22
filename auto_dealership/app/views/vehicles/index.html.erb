@@ -1,0 +1,66 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Vehicles</h1>
+
+<% if session[:current_position] == '3' %>
+<table>
+  <thead>
+    <tr>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Price</th>
+      <th>Location</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vehicles.each do |vehicle| %>
+      <% if vehicle.available %>
+      <tr>
+        <td><%= link_to vehicle.make, vehicle %></td>
+        <td><%= link_to vehicle.model, vehicle %></td>
+        <td><%= vehicle.price %></td>
+        <td><%= vehicle.location.name %></td>
+        <td><%= link_to 'Show', vehicle %></td>
+        <% if session[:current_position] != '3' %><td><%= link_to 'Edit', edit_vehicle_path(vehicle) %></td><% end %>
+        <% if session[:current_position] != '3' %><td><%= link_to 'Delete', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %>
+        <td><%= link_to 'Mark as Sold', edit_vehicle_path(vehicle)%></td>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+<table>
+  <thead>
+    <tr>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Price</th>
+      <th>Location</th>
+      <th>Sold</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vehicles.each do |vehicle| %>
+      <tr>
+        <td><%= link_to vehicle.make, vehicle %></td>
+        <td><%= link_to vehicle.model, vehicle %></td>
+        <td><%= vehicle.price %></td>
+        <td><%= vehicle.location.name %></td>
+        <td><% if !vehicle.available %>SOLD<%else%>&nbsp;<%end%>
+        <td><%= link_to 'Show', vehicle %></td>
+        <% if session[:current_position] != '3' %><td><%= link_to 'Edit', edit_vehicle_path(vehicle) %></td><% end %>
+        <% if session[:current_position] != '3' %><td><%= link_to 'Delete', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<br>
+<% if session[:current_position] != '3' %>
+<%= link_to 'New Vehicle', new_vehicle_path %>
+<% end %>

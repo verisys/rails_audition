@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Users</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Position</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.position.name %></td>
+         <% if session[:current_position] == '1' %><td><%= link_to 'Edit', edit_user_path(user) %></td><% end %>
+        <td><%= link_to 'Impersonate', current_user_path(id: user.position_id, user_name: user.name, position_name: user.position.name, user_id: user.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if session[:current_position] == '1' %>
+<%= link_to 'New User', new_user_path %>
+<% end %>
