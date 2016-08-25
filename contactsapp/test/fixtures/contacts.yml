@@ -4,7 +4,7 @@ one:
   dept_name: MyString
   contact_name: MyString
   business_phone: 
-  extension: 
+  extension: 1
   home_phone: 
   emergency_contact_name: MyString
   emergency_contact_phone: 
@@ -13,7 +13,7 @@ two:
   dept_name: MyString
   contact_name: MyString
   business_phone: 
-  extension: 
+  extension: 1
   home_phone: 
   emergency_contact_name: MyString
   emergency_contact_phone: 
