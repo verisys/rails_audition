@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dept_name: MyString
+  contact_name: MyString
+  business_phone: 
+  extension: 1
+  home_phone: 
+  emergency_contact_name: MyString
+  emergency_contact_phone: 
+
+two:
+  dept_name: MyString
+  contact_name: MyString
+  business_phone: 
+  extension: 1
+  home_phone: 
+  emergency_contact_name: MyString
+  emergency_contact_phone: 

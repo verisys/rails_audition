@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<div class='jumbotron'>
+<h1>Contact Info</h1>
+</div>
+
+<p>
+  <strong>Dept name:</strong>
+  <%= @contact.dept_name %>
+</p>
+
+<p>
+  <strong>Contact name:</strong>
+  <%= @contact.contact_name %>
+</p>
+
+<p>
+  <strong>Business phone:</strong>
+  <%= @contact.business_phone %>
+</p>
+
+<p>
+  <strong>Extension:</strong>
+  <%= @contact.extension %>
+</p>
+
+<p>
+  <strong>Home phone:</strong>
+  <%= @contact.home_phone %>
+</p>
+
+<p>
+  <strong>Emergency contact name:</strong>
+  <%= @contact.emergency_contact_name %>
+</p>
+
+<p>
+  <strong>Emergency contact phone:</strong>
+  <%= @contact.emergency_contact_phone %>
+</p>
+
+<%= link_to 'Edit', edit_contact_path(@contact) %> |
+<%= link_to 'Back', contacts_path %>
