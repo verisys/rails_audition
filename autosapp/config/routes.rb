@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :car_details
   resources :inventories
   resources :locations
   get 'welcome/index'

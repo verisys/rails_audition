@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @car_detail.year %>
+</p>
+
+<p>
+  <strong>Make:</strong>
+  <%= @car_detail.make %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @car_detail.model %>
+</p>
+
+<p>
+  <strong>Engine:</strong>
+  <%= @car_detail.engine %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @car_detail.color %>
+</p>
+
+<%= link_to 'Edit', edit_car_detail_path(@car_detail) %> |
+<%= link_to 'Back', car_details_path %>
