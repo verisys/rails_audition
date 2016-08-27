@@ -3,6 +3,17 @@
     %h1 Departments
     = link_to 'New Department', new_department_path, class: 'btn btn-primary new-button pull-right'
 
+.row
+  .col-xs-12
+    - if params[:filter] == 'my_departments'
+      My Departments
+      |
+      = link_to "All Departments", departments_path
+    - else
+      = link_to "My Departments", departments_path(filter: 'my_departments')
+      |
+      All Departments
+
 
 %table.table
   %thead

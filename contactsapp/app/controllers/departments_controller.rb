@@ -4,7 +4,11 @@ class DepartmentsController < ApplicationController
   # GET /departments
   # GET /departments.json
   def index
-    @departments = Department.all
+    if params[:filter] == "my_departments"
+      @departments = Department.where('id IN (?)', current_user.departments.map{|d| d.id})
+    else
+      @departments = Department.all
+    end
   end
 
   # GET /departments/1

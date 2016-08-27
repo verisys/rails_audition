@@ -10,7 +10,8 @@
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav
         - if current_user
-          %li= link_to "Departments", departments_path
+          %li= link_to "My Departments", departments_path(filter: 'my_departments')
+        %li= link_to "All Departments", departments_path
 
       %ul.nav.navbar-nav.navbar-right
         - if current_user
