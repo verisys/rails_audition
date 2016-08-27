@@ -21,19 +21,22 @@
       %th Name
       %th Supervisor
       %th
+      %th
 
   %tbody
     - @departments.each do |department|
       %tr
         %td= department.name
         %td= department.user.full_name
+        %td= link_to 'List Contacts', department_contacts_path(department)
         %td.right
-          = link_to 'Contacts', department_contacts_path(department)
-          |
           = link_to 'Edit', edit_department_path(department)
           |
           = link_to 'Destroy', department, :method => :delete, :data => { :confirm => 'Are you sure?' }
     - unless @departments.any?
       %tr
         %td{:colspan => 5}
-          There are no departments
+          - if params[:filter] == 'my_departments'
+            You are currently not supervisor for any departments
+          - else
+            There are no departments
