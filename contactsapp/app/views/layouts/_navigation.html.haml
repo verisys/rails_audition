@@ -9,35 +9,12 @@
       %a.navbar-brand{:href => "#"} Contacts App
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav
-        %li= link_to "Departments", departments_path
-        %li
-          %a{:href => "#about"} About
-        %li
-          %a{:href => "#contact"} Contact
-        %li.dropdown
-          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            Dropdown
-            %span.caret
-          %ul.dropdown-menu
-            %li
-              %a{:href => "#"} Action
-            %li
-              %a{:href => "#"} Another action
-            %li
-              %a{:href => "#"} Something else here
-            %li.divider{:role => "separator"}
-            %li.dropdown-header Nav header
-            %li
-              %a{:href => "#"} Separated link
-            %li
-              %a{:href => "#"} One more separated link
+        - if current_user
+          %li= link_to "Departments", departments_path
+
       %ul.nav.navbar-nav.navbar-right
-        %li
-          %a{:href => "../navbar/"} Default
-        %li
-          %a{:href => "../navbar-static-top/"} Static top
-        %li.active
-          %a{:href => "./"}
-            Fixed top
-            %span.sr-only (current)
-    / /.nav-collapse
+        - if current_user
+          %li= link_to "Sign Out", destroy_user_session_path, method: :delete
+        - else
+          %li= link_to "Sign In", new_user_session_path
+          %li= link_to "Sign Up", new_user_registration_path
