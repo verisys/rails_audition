@@ -9,8 +9,7 @@
       %a.navbar-brand{:href => "#"} Contacts App
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav
-        %li.active
-          %a{:href => "#"} Home
+        %li= link_to "Departments", departments_path
         %li
           %a{:href => "#about"} About
         %li
