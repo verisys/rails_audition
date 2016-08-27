@@ -1,0 +1,21 @@
+= simple_form_for([:department, @contact]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    .row
+      .col-sm-6= f.input :name
+      .col-sm-6= f.input :department_id, collection: Department.all {|d| [d.name, d.id]}, prompt: false
+
+    .row
+      .col-sm-6= f.input :business_phone_number, input_html: {placeholder: "888-555-1234"}
+      .col-sm-6= f.input :business_phone_extension
+
+    .row
+      .col-sm-6= f.input :home_phone_number, input_html: {placeholder: "888-555-1234"}
+
+    .row
+      .col-sm-6= f.input :emergency_contact
+      .col-sm-6= f.input :emergency_contact_phone_number, input_html: {placeholder: "888-555-1234"}
+
+  .form-actions
+    = f.button :submit, "Submit", class: 'btn btn-primary'

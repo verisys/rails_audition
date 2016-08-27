@@ -10,17 +10,18 @@
       %th Name
       %th Supervisor
       %th
-      %th
-      %th
 
   %tbody
     - @departments.each do |department|
       %tr
         %td= department.name
-        %td= department.user_id
-        %td= link_to 'Show', department
-        %td= link_to 'Edit', edit_department_path(department)
-        %td= link_to 'Destroy', department, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= department.user.full_name
+        %td.right
+          = link_to 'Contacts', department_contacts_path(department)
+          |
+          = link_to 'Edit', edit_department_path(department)
+          |
+          = link_to 'Destroy', department, :method => :delete, :data => { :confirm => 'Are you sure?' }
     - unless @departments.any?
       %tr
         %td{:colspan => 5}

@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   resources :homes, only: [:index]
 
-  resources :departments
+  resources :departments do
+    resources :contacts
+  end
 
   root to: "homes#index"
 end
