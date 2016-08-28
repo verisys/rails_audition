@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  before_action :set_contact, only: [:show, :change_status, :update_status, :edit, :update, :destroy]
 
   # GET /contacts
   # GET /contacts.json
@@ -10,6 +10,21 @@ class ContactsController < ApplicationController
   # GET /contacts/1
   # GET /contacts/1.json
   def show
+  end
+
+  # GET /contacts/1/change_status
+  def change_status
+  end
+
+  # POST /contacts/1/update_status
+  def update_status
+    @contact.status = (@contact.status == 'active' ? Contact.statuses['inactive'] : Contact.statuses['active'])
+
+    if @contact.save
+      redirect_to department_contacts_path(@contact.department, @contact), notice: "#{@contact.name}'s status has been updated."
+    else
+      render :change_status
+    end
   end
 
   # GET /contacts/new

@@ -2,6 +2,7 @@
   .col-xs-12
     %h1= @contact.name
     = link_to 'Edit', edit_department_contact_path(@contact.department, @contact), class: 'btn btn-primary new-button pull-right'
+    = link_to 'Change Status', change_status_department_contact_path(@contact.department, @contact), class: 'btn btn-primary new-button pull-right left-neighbor-button'
 %p
   %strong Department:
   = link_to @contact.department.name, department_contacts_path(@contact.department)

@@ -1,0 +1,8 @@
+.row
+  .col-xs-12
+    %h1 Change Status
+
+%p
+  #{@contact.name} is currently #{@contact.status}.  Do you want to make them #{@contact.status == 'active' ? 'inactive' : 'active'}?
+%p
+  = link_to "Yes, change status",change_status_department_contact_path(@contact.department, @contact), class: 'btn btn-primary', method: :post

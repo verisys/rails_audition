@@ -8,6 +8,7 @@
   %thead
     %tr
       %th Name
+      %th Status
       %th Home Phone Number
       %th Business Phone Number
       %th
@@ -16,10 +17,13 @@
     - @department.contacts.each do |contact|
       %tr
         %td= contact.name
+        %td= contact.status.humanize
         %td= contact.home_phone_number
         %td
           #{contact.business_phone_number} x#{contact.business_phone_extension}
         %td.right
+          = link_to 'Change Status', change_status_department_contact_path(contact.department, contact)
+          |
           = link_to 'Show', department_contact_path(contact.department, contact)
           |
           = link_to 'Edit', edit_department_contact_path(contact.department, contact)
