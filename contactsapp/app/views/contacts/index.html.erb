@@ -1,0 +1,41 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Contact Name</th>
+        <th>Department</th>
+        <th>Business phone</th>
+        <th>Extension</th>
+        <th>Home phone</th>
+        <th>Emergency Contact Name</th>
+        <th>Emergency Contact Phone</th>
+        <th>Status</th>
+        <th colspan="3">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @contacts.each do |contact| %>
+      <tr>
+        <td><%= contact.name %></td>
+        <td><%= contact.department.name %></td>
+        <td><%= contact.business_phone %></td>
+        <td><%= contact.extension %></td>
+        <td><%= contact.home_phone %></td>
+        <td><%= contact.emergency_contact_name %></td>
+        <td><%= contact.emergency_contact_number %></td>
+        <td><% if contact.active %>Active<% else %>Inactive <% end %></td>
+        <td><%= link_to 'View', contact %></td>
+        <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+        <td><%= link_to 'Delete', contact, method: :delete, data:
+            { confirm: 'Are you sure you want to delete this contact?' } %></td>
+      </tr>
+    <% end %>
+    </tbody>
+
+  </table>
+
+  <%= link_to 'New Contact', new_contact_path, class: 'btn' %>
+  <p id="notice"><%= notice %></p>
+
+
+</div>
