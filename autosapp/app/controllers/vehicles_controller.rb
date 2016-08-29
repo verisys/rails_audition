@@ -37,7 +37,15 @@ class VehiclesController < ApplicationController
   def save_sale
     authorize @vehicle
 
-    
+    @vehicle.sold = true
+    @vehicle.sale_price = vehicle_params["sale_price"]
+    @vehicle.salesman_user_id = current_user.id
+
+    if @vehicle.save
+      redirect_to vehicle_path @vehicle, notice: "The vehicle has been sold!"
+    else
+      render :sale
+    end
   end
 
   # POST /vehicles

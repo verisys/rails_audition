@@ -12,7 +12,7 @@
 - if @vehicle.sold
   %p
     %b Sold by:
-    Hi
+    = @vehicle.salesman.email
   %p
     %b Sale price:
     = @vehicle.sale_price

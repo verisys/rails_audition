@@ -16,7 +16,6 @@
 
       %ul.nav.navbar-nav.navbar-right
         - if current_user
-          %li= current_user.role
           %li= link_to "Sign Out", destroy_user_session_path, method: :delete
         - else
           %li= link_to "Sign In", new_user_session_path
