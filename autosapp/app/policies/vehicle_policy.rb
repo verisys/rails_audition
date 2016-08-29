@@ -20,11 +20,11 @@ class VehiclePolicy < ApplicationPolicy
   end
 
   def edit?
-    new?
+    new? && !@record.sold
   end
 
   def update?
-    new?
+    edit?
   end
 
   def show?
@@ -32,7 +32,9 @@ class VehiclePolicy < ApplicationPolicy
   end
 
   def sale?
-    @user.role == 'salesman'
+    return false if @user.nil?
+
+    @user.role == 'salesman' && !@record.sold
   end
 
   def save_sale?

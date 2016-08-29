@@ -1,5 +1,6 @@
 = simple_form_for(@vehicle) do |f|
   = f.error_notification
+  = @vehicle.errors.to_json
 
   .form-inputs
     %h3 Vehicle Information
