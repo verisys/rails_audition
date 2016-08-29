@@ -1,0 +1,23 @@
+%h1
+  #{@vehicle.year} #{@vehicle.make} #{@vehicle.model}
+
+%p
+  %strong Current location:
+  = @vehicle.location.name
+
+%p
+  %strong Price:
+  $#{number_with_precision @vehicle.price, precision: 2}
+
+- if @vehicle.sold
+  %p
+    %b Sold by:
+    Hi
+  %p
+    %b Sale price:
+    = @vehicle.sale_price
+
+- if policy(@vehicle).edit?
+  = link_to 'Edit', edit_vehicle_path(@vehicle)
+  \|
+= link_to 'Back', vehicles_path

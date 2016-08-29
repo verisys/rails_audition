@@ -1,0 +1,13 @@
+%h1 Record Vehicle Sale
+
+%p
+  %strong Vehicle:
+  #{@vehicle.year} #{@vehicle.make} #{@vehicle.model}
+
+%p
+  %strong Sale Price:
+  $#{number_with_precision @vehicle.price, precision: 2}
+
+= simple_form_for @vehicle, url: sale_vehicle_path(@vehicle) do |f|
+  = f.input :sale_price
+  = f.button :submit, "Sale Vehicle"

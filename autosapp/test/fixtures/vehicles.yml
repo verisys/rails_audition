@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location_id: 1
+  year: MyString
+  make: MyString
+  model: MyString
+  price: 9.99
+  sold: false
+  sale_price: 9.99
+
+two:
+  location_id: 1
+  year: MyString
+  make: MyString
+  model: MyString
+  price: 9.99
+  sold: false
+  sale_price: 9.99
