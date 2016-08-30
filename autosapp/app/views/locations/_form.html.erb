@@ -1,0 +1,22 @@
+<%= form_for(location) do |f| %>
+    <% if location.errors.any? %>
+        <div id="error">
+          <h2><%= pluralize(location.errors.count, "error") %> </h2>
+
+          <ul>
+            <% location.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </p>
+
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>

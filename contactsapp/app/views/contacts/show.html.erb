@@ -1,0 +1,18 @@
+  <dl>
+    <dt>Name</dt>
+    <dd><%= @contact.name %></dd>
+    <dt>Department</dt>
+    <dd><%= @contact.department.name %></dd>
+    <dt>Business Phone</dt>
+    <dd><%= @contact.business_phone %></dd>
+    <dt>Extension</dt>
+    <dd><%= @contact.extension %></dd>
+    <dt>Home Phone</dt>
+    <dd><%= @contact.home_phone %></dd>
+    <dt>Emergency Contact Name</dt>
+    <dd><%= @contact.emergency_contact_name %></dd>
+    <dt>Emergency Contact Phone</dt>
+    <dd><%= @contact.emergency_contact_number %></dd>
+  </dl>
+
+  <%= link_to 'Back', contacts_path %>

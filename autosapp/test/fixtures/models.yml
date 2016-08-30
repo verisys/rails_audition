@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Car: MyString
+  make: MyString
+  model: MyString
+  location: one
+
+two:
+  Car: MyString
+  make: MyString
+  model: MyString
+  location: two

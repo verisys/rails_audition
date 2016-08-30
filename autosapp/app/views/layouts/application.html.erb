@@ -9,6 +9,11 @@
   </head>
 
   <body>
-    <%= yield %>
+  <div>
+  <%= link_to 'Locations', locations_url, class: 'btn' %>
+  <%= link_to 'Cars', cars_url, class: 'btn' %>
+  </div>
+  <%= yield %>
+    <p id="notice"><%= notice %></p>
   </body>
 </html>
