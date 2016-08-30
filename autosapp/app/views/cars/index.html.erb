@@ -1,0 +1,37 @@
+<div>
+  <table>
+    <thead>
+    <tr>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Location</th>
+      <th>Price</th>
+      <th>Status</th>
+      <th>Sell Price</th>
+      <th colspan="3">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @cars.each do |car| %>
+        <tr>
+          <td><%= car.make %></td>
+          <td><%= car.model %></td>
+          <td><%= car.location.name %></td>
+          <td><%= car.price %></td>
+          <td><% if car.sold %>Sold<% else %>Available<% end %></td>
+          <td><%= car.sell_price %></td>
+          <td><%= link_to 'View', car %></td>
+          <td><%= link_to 'Edit', edit_car_path(car) %></td>
+          <td><%= link_to 'Delete', car, method: :delete, data:
+              { confirm: 'Are you sure you want to delete this car?' } %></td>
+        </tr>
+    <% end %>
+    </tbody>
+
+  </table>
+
+  <%= link_to 'New Car', new_car_path, class: 'btn' %>
+  <p id="notice"><%= notice %></p>
+
+
+</div>

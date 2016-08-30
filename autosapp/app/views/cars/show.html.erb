@@ -1,0 +1,15 @@
+<dl>
+  <dt>Make</dt>
+  <dd><%= @car.make %></dd>
+  <dt>Model</dt>
+  <dd><%= @car.model %></dd>
+  <dt>Location</dt>
+  <dd><%= @car.location.name %></dd>
+  <dt>Price</dt>
+  <dd><%= @car.price %></dd>
+  <% if @car.sold %>
+  <dt>Sell Price</dt>
+  <dd><%= @car.sell_price %></dd>
+  <% end %>
+
+<%= link_to 'Back', car_path %>
