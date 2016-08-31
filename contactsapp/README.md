@@ -10,4 +10,5 @@ First, clone the app, then use the following to get up and running:
 cd contactsapp
 bundle install
 rake db:migrate
+rails server
 ```

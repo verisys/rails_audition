@@ -10,6 +10,7 @@ First, clone the app, then use the following to get up and running:
 cd autosapp
 bundle install
 rake db:migrate
+rails server
 ```
 
 ## Getting started
