@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Briant Gale's rails audition
 
-Things you may want to cover:
+## Installing
 
-* Ruby version
+First, clone the app, then use the following to get up and running:
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```sh
+cd contactsapp
+bundle install
+rake db:migrate
+rails server
+```

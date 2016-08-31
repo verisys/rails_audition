@@ -1,3 +1,14 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: { registrations: 'user/registrations' }
+
+  resources :homes, only: [:index]
+
+  resources :departments do
+    resources :contacts do
+      get :change_status, on: :member
+      post :change_status, on: :member, to: "contacts#update_status"
+    end
+  end
+
+  root to: "homes#index"
 end

@@ -1,0 +1,20 @@
+.row
+  .col-xs-12
+    %h1 Locations
+    -if policy(@locations).new?
+      = link_to 'New Location', new_location_path, class: 'btn btn-primary new-button pull-right'
+
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th
+
+  %tbody
+    - @locations.each do |location|
+      %tr
+        %td= location.name
+        %td.right
+          - if policy(location).edit?
+            = link_to 'Edit', edit_location_path(location)

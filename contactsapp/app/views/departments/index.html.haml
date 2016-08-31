@@ -1,0 +1,42 @@
+.row
+  .col-xs-12
+    %h1 Departments
+    = link_to 'New Department', new_department_path, class: 'btn btn-primary new-button pull-right'
+
+.row
+  .col-xs-12
+    - if params[:filter] == 'my_departments'
+      My Departments
+      |
+      = link_to "All Departments", departments_path
+    - else
+      = link_to "My Departments", departments_path(filter: 'my_departments')
+      |
+      All Departments
+
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Supervisor
+      %th
+      %th
+
+  %tbody
+    - @departments.each do |department|
+      %tr
+        %td= department.name
+        %td= department.user.full_name
+        %td= link_to 'List Contacts', department_contacts_path(department)
+        %td.right
+          = link_to 'Edit', edit_department_path(department)
+          |
+          = link_to 'Destroy', department, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    - unless @departments.any?
+      %tr
+        %td{:colspan => 5}
+          - if params[:filter] == 'my_departments'
+            You are currently not supervisor for any departments
+          - else
+            There are no departments

@@ -1,0 +1,24 @@
+.row
+  .col-xs-12
+    %h1= @contact.name
+    = link_to 'Edit', edit_department_contact_path(@contact.department, @contact), class: 'btn btn-primary new-button pull-right'
+    = link_to 'Change Status', change_status_department_contact_path(@contact.department, @contact), class: 'btn btn-primary new-button pull-right left-neighbor-button'
+%p
+  %strong Department:
+  = link_to @contact.department.name, department_contacts_path(@contact.department)
+%p
+  %strong Business phone number:
+  = @contact.business_phone_number
+
+  - if @contact.business_phone_extension
+    x#{ @contact.business_phone_extension}
+
+%p
+  %strong Home phone number:
+  = @contact.home_phone_number
+%p
+  %strong Emergency contact:
+  = @contact.emergency_contact
+%p
+  %strong Emergency contact phone number:
+  = @contact.emergency_contact_phone_number

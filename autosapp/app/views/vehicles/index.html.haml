@@ -1,0 +1,32 @@
+%h1 Vehicle Inventory
+- if policy(@vehicles).new?
+  = link_to 'New Vehicle', new_vehicle_path, class: 'btn btn-primary new-button pull-right'
+
+%table.table
+  %thead
+    %tr
+      %th Location
+      %th Vehicle
+      %th Price
+      %th Availability
+      %th
+
+
+  %tbody
+    - @vehicles.each do |vehicle|
+      %tr
+        %td= vehicle.location.name
+        %td
+          #{vehicle.year} #{vehicle.make} #{vehicle.model}
+        %td
+          $#{number_with_precision vehicle.price, precision: 2}
+        %td= vehicle.sold ? "Sold" : "Not Sold"
+        %td.right
+          - if policy(vehicle).show?
+            = link_to 'Show', vehicle
+          - if policy(vehicle).sale?
+            |
+            = link_to 'Sale', sale_vehicle_path(vehicle)
+          - if policy(vehicle).edit?
+            |
+            = link_to 'Edit', edit_vehicle_path(vehicle)

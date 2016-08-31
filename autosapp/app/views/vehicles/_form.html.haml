@@ -1,0 +1,22 @@
+= simple_form_for(@vehicle) do |f|
+  = f.error_notification
+  = @vehicle.errors.to_json
+
+  .form-inputs
+    %h3 Vehicle Information
+    .row
+      .col-xs-6= f.input :location_id, collection: Location.all.map {|l| [l.name,l.id]}, prompt: false
+      .col-xs-6= f.input :price
+
+    .row
+      .col-xs-4= f.input :year, collection: (1960..Time.now.strftime('%Y').to_i).map {|y| y}.reverse, prompt: false
+      .col-xs-4= f.input :make
+      .col-xs-4= f.input :model
+
+    %h3 Sale Information
+    .row
+      .col-xs-6= f.input :sold, collection: [["Not Sold", false], ["Sold", true]]
+      .col-xs-6= f.input :sale_price
+
+  .form-actions
+    = f.button :submit

@@ -1,0 +1,4 @@
+= simple_form_for @department do |f|
+  = f.input :name
+  = f.input :user_id, collection: User.order('last_name DESC').map {|u| [u.full_name, u.id]}, prompt: "Choose a user", label: "Supervisor"
+  = f.button :submit, "Submit", class: "btn btn-primary"

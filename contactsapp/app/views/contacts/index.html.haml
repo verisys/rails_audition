@@ -1,0 +1,31 @@
+.row
+  .col-xs-12
+    %h1
+      #{@department.name} Contacts
+    = link_to 'New Contact', new_department_contact_path(@department), class: 'btn btn-primary new-button pull-right'
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Status
+      %th Home Phone Number
+      %th Business Phone Number
+      %th
+
+  %tbody
+    - @department.contacts.each do |contact|
+      %tr
+        %td= contact.name
+        %td= contact.status.humanize
+        %td= contact.home_phone_number
+        %td
+          #{contact.business_phone_number} x#{contact.business_phone_extension}
+        %td.right
+          = link_to 'Change Status', change_status_department_contact_path(contact.department, contact)
+          |
+          = link_to 'Show', department_contact_path(contact.department, contact)
+          |
+          = link_to 'Edit', edit_department_contact_path(contact.department, contact)
+          |
+          = link_to 'Destroy', department_contact_path(contact.department, contact), :method => :delete, :data => { :confirm => 'Are you sure?' }
