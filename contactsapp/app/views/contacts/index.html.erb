@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+<h1> Contact Book</h1>
+<%if @contacts.present?%>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Business phone</th>
+        <th>Home phone</th>
+        <th>Extension</th>
+        <th colspan="3">Department</th>
+        <th colspan="3">Emergency contact name</th>
+        <th colspan="3">Emergency contact number</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @contacts.each do |contact| %>
+        <tr>
+          <td><%= contact.name %></td>
+          <td><%= contact.business_phone %></td>
+          <td><%= contact.home_phone %></td>
+          <td><%= contact.extension %></td>
+          <td colspan="3"><%= contact.department.name %></td>
+          <td colspan="3"><%= contact.em_contact_name %></td>
+          <td colspan="4"><%= contact.em_contact_num %></td>
+          <td><%= link_to 'Show', contact %></td>
+          <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+          <td><%#= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to 'Add New Contact', new_contact_path %>
+<%else%>
+  <%= link_to 'Add New Contact', new_contact_path %>
+<%end%>  
+</br>
+<%= link_to 'Add New Department', new_department_path %>
+</br>
+<%= link_to 'Add New Supervisor', new_supervisor_path %>
+
