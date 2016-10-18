@@ -74,6 +74,25 @@ RSpec.describe ContactsController, type: :controller do
     end
   end
 
+  describe "GET #toggle_active" do
+    it "will make an active contact inactive" do
+      contact = Contact.create! valid_attributes
+      xhr :get, :toggle_active, params: {id: contact.to_param}, session: valid_session, format: :js
+      expect(assigns(:contact)).to eq(contact)
+      contact.reload
+      expect(contact.active?).to be false
+    end
+
+    it "cannot be edited by the wrong supervisor" do
+      other_supervisor_department = FactoryGirl.create(:department)
+      contact = Contact.new valid_attributes
+      contact.department_id = other_supervisor_department.id 
+      contact.save!
+      expect { xhr :get, :toggle_active, params: {id: contact.to_param}, session: valid_session, format: :js}.to raise_exception
+    end
+
+  end
+
   describe "GET #edit" do
     it "assigns the requested contact as @contact" do
       contact = Contact.create! valid_attributes

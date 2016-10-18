@@ -1,16 +1,23 @@
 class ContactsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  before_action :set_contact, only: [:show, :edit, :update, :destroy, :toggle_active]
 
 
   # GET /contacts
   # GET /contacts.json
   def index
-    di = params[:department_id]
+    di = params[:department_id] || params[:q][:department_id_eq] rescue nil
     @department =  di.present? ? Department.find(di) : nil
     scope = @department ? Contact.where(department_id: di) : Contact.unscoped
     @search = scope.ransack(params[:q])
+    @search.sorts = 'name asc' if @search.sorts.empty?
     @contacts = @search.result.page(params[:page]).per(20)
+  end
+
+  def toggle_active 
+    raise "Cannot edit Contact belonging to unsupervised Department" unless @contact.supervised_by?(current_user)
+    @contact.active = !@contact.active 
+    @contact.save!
   end
 
   # GET /contacts/1

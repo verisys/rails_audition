@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016074356) do
+ActiveRecord::Schema.define(version: 20161018191600) do
 
   create_table "contacts", force: :cascade do |t|
     t.integer  "department_id"
@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(version: 20161016074356) do
     t.string   "home_phone"
     t.string   "emergency_contact_name"
     t.string   "emergency_contact_number"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.boolean  "active",                   default: true
     t.index ["department_id"], name: "index_contacts_on_department_id"
   end
 

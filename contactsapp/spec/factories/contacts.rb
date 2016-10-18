@@ -11,6 +11,7 @@
 #  emergency_contact_number :string
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
+#  active                   :boolean          default(TRUE)
 #
 
 FactoryGirl.define do
@@ -21,5 +22,6 @@ FactoryGirl.define do
     home_phone {Faker::PhoneNumber.cell_phone}
     emergency_contact_name {Faker::Name.name}
     emergency_contact_number {Faker::PhoneNumber.cell_phone}
+    active true
   end
 end

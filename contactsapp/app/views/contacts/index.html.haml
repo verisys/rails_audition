@@ -5,7 +5,11 @@
       New Contact
   .pull-right
     =search_form_for @search do |f| 
+      =f.label :active_false
+      =f.check_box :active_false
       =f.search_field :name_or_home_phone_cont, placeholder: "Search contact by name or home phone"
+      -if @department
+        =f.hidden_field :department_id_eq, value: @department.id
       =f.submit class: "btn-info btn"
   %h3 
     - if @department
@@ -28,15 +32,4 @@
 
     %tbody
       - @contacts.each do |contact|
-        %tr
-          %td= contact.department.try(:name)
-          %td= contact.name
-          %td= contact.business_phone
-          %td= contact.home_phone
-          %td= contact.emergency_contact_name
-          %td= contact.emergency_contact_number
-          %td
-            = link_to 'Show', contact, class: "btn  btn-xs btn-primary"
-            -if contact.supervised_by?(current_user)
-              = link_to 'Edit', edit_contact_path(contact), class: "btn btn-xs btn-info"
-              = link_to 'Destroy', contact, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-xs btn-danger"
+        =render 'contacts/index_row', contact: contact
