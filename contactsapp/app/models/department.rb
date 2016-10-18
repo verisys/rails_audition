@@ -14,4 +14,5 @@ class Department < ApplicationRecord
   has_many :contacts
 
   validates_presence_of :user  
+  validates_presence_of :name
 end

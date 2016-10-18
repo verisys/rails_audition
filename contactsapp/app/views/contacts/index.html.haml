@@ -7,20 +7,23 @@
     =search_form_for @search do |f| 
       =f.search_field :name_or_home_phone_cont, placeholder: "Search contact by name or home phone"
       =f.submit class: "btn-info btn"
-  %h1 Listing contacts
+  %h3 
+    - if @department
+      Viewing Contacts for #{@department.name}
+    -else
+      Listing All Contacts
+
   =paginate @contacts
 .table-responsive
   %table.table.table-striped.table-bordered.table-hover.table-condensed
     %thead
       %tr
-        %th=sort_link @search, :department_name
+        %th=sort_link @search, :department_name, "Department"
         %th=sort_link @search, :name
         %th=sort_link @search, :business_phone
         %th=sort_link @search, :home_phone
         %th=sort_link @search, :emergency_contact_name
         %th=sort_link @search, :emergency_contact_number
-        %th
-        %th
         %th
 
     %tbody
@@ -32,6 +35,8 @@
           %td= contact.home_phone
           %td= contact.emergency_contact_name
           %td= contact.emergency_contact_number
-          %td= link_to 'Show', contact, class: "btn  btn-sm btn-primary"
-          %td= link_to 'Edit', edit_contact_path(contact), class: "btn btn-sm btn-info"
-          %td= link_to 'Destroy', contact, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-sm btn-danger"
+          %td
+            = link_to 'Show', contact, class: "btn  btn-xs btn-primary"
+            -if contact.supervised_by?(current_user)
+              = link_to 'Edit', edit_contact_path(contact), class: "btn btn-xs btn-info"
+              = link_to 'Destroy', contact, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-xs btn-danger"

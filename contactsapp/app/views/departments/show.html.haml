@@ -1,5 +1,5 @@
 .page-header
-  = link_to departments_path, class: 'btn btn-default' do
+  = link_to "#", class: 'btn btn-default', onclick: "history.go(-1);" do
     %span.glyphicon.glyphicon-list-alt
     Back
   = link_to edit_department_path(@department), class: 'btn btn-primary' do

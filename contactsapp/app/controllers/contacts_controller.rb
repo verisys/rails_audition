@@ -7,7 +7,8 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     di = params[:department_id]
-    scope = di.present? ? Contact.where(department_id: di) : Contact.unscoped
+    @department =  di.present? ? Department.find(di) : nil
+    scope = @department ? Contact.where(department_id: di) : Contact.unscoped
     @search = scope.ransack(params[:q])
     @contacts = @search.result.page(params[:page]).per(20)
   end
@@ -24,13 +25,14 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1/edit
   def edit
+    raise "Cannot edit Contact belonging to unsupervised Department" unless @contact.supervised_by?(current_user)
   end
 
   # POST /contacts
   # POST /contacts.json
   def create
     @contact = Contact.new(contact_params)
-
+    raise "Cannot add Contact to unsupervised Department" unless @contact.supervised_by?(current_user)
     respond_to do |format|
       if @contact.save
         format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
@@ -45,6 +47,7 @@ class ContactsController < ApplicationController
   # PATCH/PUT /contacts/1
   # PATCH/PUT /contacts/1.json
   def update
+    raise "Cannot update Contact belonging to unsupervised Department" unless @contact.supervised_by?(current_user)
     respond_to do |format|
       if @contact.update(contact_params)
         format.html { redirect_to @contact, notice: 'Contact was successfully updated.' }
@@ -59,6 +62,7 @@ class ContactsController < ApplicationController
   # DELETE /contacts/1
   # DELETE /contacts/1.json
   def destroy
+    raise "Cannot destroy Contact belonging to unsupervised Department" unless @contact.supervised_by?(current_user)
     @contact.destroy
     respond_to do |format|
       format.html { redirect_to contacts_url, notice: 'Contact was successfully destroyed.' }

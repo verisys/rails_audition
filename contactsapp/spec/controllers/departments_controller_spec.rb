@@ -20,15 +20,22 @@ require 'rails_helper'
 
 RSpec.describe DepartmentsController, type: :controller do
 
+  before :each do 
+    @user = FactoryGirl.create(:user)
+    @user.confirm
+    @department = FactoryGirl.create(:department, user: @user)
+    sign_in @user
+  end
+
   # This should return the minimal set of attributes required to create a valid
   # Department. As you add validations to Department, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { name: Faker::Company.name, user_id: @user.id }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { name: "" }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -40,7 +47,7 @@ RSpec.describe DepartmentsController, type: :controller do
     it "assigns all departments as @departments" do
       department = Department.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(assigns(:departments)).to eq([department])
+      expect(assigns(:departments)).to eq(Department.all.to_a)
     end
   end
 
@@ -103,14 +110,14 @@ RSpec.describe DepartmentsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { name: "_______"}
       }
 
       it "updates the requested department" do
         department = Department.create! valid_attributes
         put :update, params: {id: department.to_param, department: new_attributes}, session: valid_session
         department.reload
-        skip("Add assertions for updated state")
+        expect(department.name).to eq new_attributes[:name]
       end
 
       it "assigns the requested department as @department" do

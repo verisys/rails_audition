@@ -17,4 +17,9 @@ class Contact < ApplicationRecord
   belongs_to :department
 
   validates_presence_of :department_id, :name, :home_phone, :emergency_contact_name, :emergency_contact_number
+
+  def supervised_by? user
+    d = department || Department.find(department_id)
+    d.user == user
+  end
 end

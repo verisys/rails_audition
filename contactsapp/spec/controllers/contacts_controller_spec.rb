@@ -20,21 +20,36 @@ require 'rails_helper'
 
 RSpec.describe ContactsController, type: :controller do
 
+  before :all do 
+    @user = FactoryGirl.create(:user)
+    @user.confirm
+    @department = FactoryGirl.create(:department, user: @user)
+  end
+
+  before :each do 
+    sign_in @user
+  end
+
   # This should return the minimal set of attributes required to create a valid
   # Contact. As you add validations to Contact, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { name: Faker::Name.name, business_phone: Faker::PhoneNumber.phone_number,
+                          home_phone: Faker::PhoneNumber.cell_phone, 
+                          emergency_contact_name: Faker::Name.name, 
+                          emergency_contact_number: Faker::PhoneNumber.cell_phone,
+                          department_id: @department.id
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { name: nil, department_id: @department.id }
   }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # ContactsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) { {  } }
 
   describe "GET #index" do
     it "assigns all contacts as @contacts" do
@@ -65,6 +80,14 @@ RSpec.describe ContactsController, type: :controller do
       get :edit, params: {id: contact.to_param}, session: valid_session
       expect(assigns(:contact)).to eq(contact)
     end
+
+    it "cannot be edited by the wrong supervisor" do
+      other_supervisor_department = FactoryGirl.create(:department)
+      contact = Contact.new valid_attributes
+      contact.department_id = other_supervisor_department.id 
+      contact.save!
+      expect { get :edit, params: {id: contact.to_param}, session: valid_session}.to raise_exception
+    end
   end
 
   describe "POST #create" do
@@ -85,6 +108,13 @@ RSpec.describe ContactsController, type: :controller do
         post :create, params: {contact: valid_attributes}, session: valid_session
         expect(response).to redirect_to(Contact.last)
       end
+
+      it "cannot be created in an unsupervised department" do
+        other_supervisor_department = FactoryGirl.create(:department)
+        attrs = valid_attributes.merge! department_id: other_supervisor_department.id
+        expect { post :create, params: {contact: attrs}, session: valid_session}.to raise_exception
+      end
+
     end
 
     context "with invalid params" do
@@ -103,14 +133,14 @@ RSpec.describe ContactsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { name: "_______"}
       }
 
       it "updates the requested contact" do
         contact = Contact.create! valid_attributes
         put :update, params: {id: contact.to_param, contact: new_attributes}, session: valid_session
         contact.reload
-        skip("Add assertions for updated state")
+        expect(contact.name).to eq new_attributes[:name]
       end
 
       it "assigns the requested contact as @contact" do
@@ -123,6 +153,14 @@ RSpec.describe ContactsController, type: :controller do
         contact = Contact.create! valid_attributes
         put :update, params: {id: contact.to_param, contact: valid_attributes}, session: valid_session
         expect(response).to redirect_to(contact)
+      end
+
+      it "cannot be updated by the wrong supervisor" do 
+        other_supervisor_department = FactoryGirl.create(:department)
+        contact = Contact.new valid_attributes
+        contact.department_id = other_supervisor_department.id 
+        contact.save!
+        expect { put :update, params: {id: contact.to_param, contact: valid_attributes}, session: valid_session}.to raise_exception
       end
     end
 
@@ -153,6 +191,14 @@ RSpec.describe ContactsController, type: :controller do
       contact = Contact.create! valid_attributes
       delete :destroy, params: {id: contact.to_param}, session: valid_session
       expect(response).to redirect_to(contacts_url)
+    end
+
+    it "cannot be destroyed by the wrong supervisor" do 
+      other_supervisor_department = FactoryGirl.create(:department)
+      contact = Contact.new valid_attributes
+      contact.department_id = other_supervisor_department.id 
+      contact.save!
+      expect {  delete :destroy, params: {id: contact.to_param}, session: valid_session }.to raise_exception
     end
   end
 

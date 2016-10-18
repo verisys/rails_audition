@@ -12,13 +12,13 @@
   user.confirm
   user.reset_password("password", "password")
 
-  5.times do |t|
+  (2 + rand(4)).times do |t|
     d = Department.where(name: Faker::Company.name).first_or_create
     d.user = user 
     d.save
     d.contacts.delete_all
 
-    231.times do |x|
+    (50 + rand(131)).times do |x|
         d.contacts.create( name: Faker::Name.name, business_phone: Faker::PhoneNumber.phone_number,
                           home_phone: Faker::PhoneNumber.cell_phone, 
                           emergency_contact_name: Faker::Name.name, 

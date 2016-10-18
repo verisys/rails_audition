@@ -1,0 +1,11 @@
+.well
+  %h1 Welcome To Contact Manager
+  %h3 Here are your supervised Departments
+-current_user.departments.each do |d| 
+  .col-md-3
+    .panel.panel-primary
+      .panel-heading
+        .panel-title=d.name 
+      .panel-body
+        #{d.contacts.count} Contacts
+        .edit-link=link_to "View", contacts_path(department_id: d.id)

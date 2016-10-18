@@ -27,4 +27,7 @@ class User < ApplicationRecord
 
   has_many :departments 
   
+  def admin?
+    false 
+  end
 end

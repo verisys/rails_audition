@@ -1,5 +1,5 @@
 .page-header
-  = link_to contacts_path, class: 'btn btn-default' do
+  = link_to "#", class: 'btn btn-default', onclick: "history.go(-1);" do
     %span.glyphicon.glyphicon-list-alt
     Back
   = link_to edit_contact_path(@contact), class: 'btn btn-primary' do

@@ -11,7 +11,7 @@
 
   .col-md-6
     .form-inputs
-      = f.association :department
+      = f.association :department, collection: current_user.departments
       = f.input :emergency_contact_name
       = f.input :emergency_contact_number
 
