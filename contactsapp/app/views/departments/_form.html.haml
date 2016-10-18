@@ -1,0 +1,10 @@
+= simple_form_for(@department) do |f|
+  = f.error_notification
+
+  .col-md-6
+    .form-inputs
+      = f.input :name
+      = f.association :user, collection: User.all.map { |u| [u.email, u.id] }
+
+    .form-actions
+      = f.button :submit, class: "btn btn-info"

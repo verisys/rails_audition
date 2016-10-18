@@ -1,0 +1,30 @@
+.page-header
+  .pull-right
+    = link_to new_department_path, class: 'btn btn-primary' do
+      %span.glyphicon.glyphicon-plus
+      New Department
+  .pull-right
+    =search_form_for @search do |f| 
+      =f.search_field :name_cont, placeholder: "Search departments by name"
+      =f.submit class: "btn-info btn"
+  %h1 Listing departments
+  =paginate @departments
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover.table-condensed
+    %thead
+      %tr
+        %th=sort_link @search, :name
+        %th=sort_link @search, :user_email
+        %th
+        %th
+        %th
+
+    %tbody
+      - @departments.each do |department|
+        %tr
+          %td= department.name
+          %td= department.user.email
+          %td= link_to 'Show', department, class: "btn btn-sm btn-primary"
+          %td= link_to 'Edit', edit_department_path(department), class: "btn btn-sm btn-info"
+          %td= link_to 'Destroy', department, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-sm btn-danger"

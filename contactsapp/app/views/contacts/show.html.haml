@@ -1,0 +1,22 @@
+.page-header
+  = link_to contacts_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_contact_path(@contact), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show contact
+
+%dl.dl-horizontal
+  %dt Department:
+  %dd= @contact.department.try(:name)
+  %dt Name:
+  %dd= @contact.name
+  %dt Business phone:
+  %dd= @contact.business_phone
+  %dt Home phone:
+  %dd= @contact.home_phone
+  %dt Emergency contact name:
+  %dd= @contact.emergency_contact_name
+  %dt Emergency contact number:
+  %dd= @contact.emergency_contact_number
