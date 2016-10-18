@@ -1,0 +1,35 @@
+.page-header
+  .pull-right
+    = link_to new_contact_path, class: 'btn btn-primary' do
+      %span.glyphicon.glyphicon-plus
+      New Contact
+  .pull-right
+    =search_form_for @search do |f| 
+      =f.label :active_false
+      =f.check_box :active_false
+      =f.search_field :name_or_home_phone_cont, placeholder: "Search contact by name or home phone"
+      -if @department
+        =f.hidden_field :department_id_eq, value: @department.id
+      =f.submit class: "btn-info btn"
+  %h3 
+    - if @department
+      Viewing Contacts for #{@department.name}
+    -else
+      Listing All Contacts
+
+  =paginate @contacts
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover.table-condensed
+    %thead
+      %tr
+        %th=sort_link @search, :department_name, "Department"
+        %th=sort_link @search, :name
+        %th=sort_link @search, :business_phone
+        %th=sort_link @search, :home_phone
+        %th=sort_link @search, :emergency_contact_name
+        %th=sort_link @search, :emergency_contact_number
+        %th
+
+    %tbody
+      - @contacts.each do |contact|
+        =render 'contacts/index_row', contact: contact

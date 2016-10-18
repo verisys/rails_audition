@@ -1,0 +1,17 @@
+= simple_form_for(@contact) do |f|
+  = f.error_notification
+
+  .col-md-6
+    .form-inputs
+      = f.input :name
+      = f.input :home_phone
+      = f.input :business_phone
+    .form-actions
+      = f.button :submit, class: "btn btn-info"
+
+  .col-md-6
+    .form-inputs
+      = f.association :department, collection: current_user.departments
+      = f.input :emergency_contact_name
+      = f.input :emergency_contact_number
+
