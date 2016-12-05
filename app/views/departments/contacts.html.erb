@@ -1,0 +1,10 @@
+<h1><%= @department.name %> contacts</h1>
+
+<%= render 'contacts/list' %>
+
+<br>
+
+<%= link_to 'Back', contacts_path %>
+<% if user_is_department_supervisor(@department.supervisor_id) %>
+| <%= link_to 'New Contact', new_contact_path %>
+<% end %>
