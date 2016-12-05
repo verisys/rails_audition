@@ -1,0 +1,68 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @vehicle.year %>
+</p>
+
+<p>
+  <strong>Make:</strong>
+  <%= @vehicle.make %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @vehicle.model %>
+</p>
+
+<p>
+  <strong>Vin:</strong>
+  <%= @vehicle.vin %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @vehicle.price %>
+</p>
+
+<p>
+  <strong>Milage:</strong>
+  <%= @vehicle.milage %>
+</p>
+
+<p>
+  <strong>Ext color:</strong>
+  <%= @vehicle.ext_color %>
+</p>
+
+<p>
+  <strong>Int color:</strong>
+  <%= @vehicle.int_color %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @vehicle.location.name %>
+</p>
+
+<p>
+  <strong>Available:</strong>
+  <%= @vehicle.available %>
+</p>
+
+<p>
+  <strong>Sold price:</strong>
+  <%= @vehicle.sold_price %>
+</p>
+
+<p>
+  <strong>Sold By:</strong>
+  <% if @vehicle.user_id.presence %> <%= @vehicle.user.name %> <% end %>
+</p>
+
+<% if session[:current_position] != '3' %>
+<%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
+<% else %>
+<%= link_to 'Mark as Sold', edit_vehicle_path(@vehicle) %> |
+<% end %>
+<%= link_to 'Back', vehicles_path %>

@@ -1,0 +1,53 @@
+
+
+<div id="accordion">
+<% @department.sort { |a,b| a.name <=> b.name }.each do |department|%>
+<h3><%= department.name %> - <%= department.supervisor.name %></h3>
+<div>
+<table id="viewPage">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Business phone</th>
+      <th>Business extension</th>
+      <th>Home phone</th>
+      <th>Emergency contact name</th>
+      <th>Emergency contact phone</th>
+      <th>Active</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contacts.each do |contact| %>
+    <% if contact.department_id == department.id %>
+      <tr>
+        <td class="<%= 'inactivated' unless contact.active %>"><%= contact.name %></td>
+        <td class="<%= 'inactivated' unless contact.active %>"><%= contact.business_phone %></td>
+        <td class="<%= 'inactivated' unless contact.active %>"><%= contact.business_extension %></td>
+        <td class="<%= 'inactivated' unless contact.active %>"><%= contact.home_phone %></td>
+        <td class="<%= 'inactivated' unless contact.active %>"><%= contact.emergency_contact_name %></td>
+        <td class="<%= 'inactivated' unless contact.active %>"><%= contact.emergency_contact_phone %></td>
+        <td class="<%= 'inactivated' unless contact.active %>"><%= contact.active %></td>
+        <% if contact.active %>
+            <td><%= link_to 'Inactivate', inactivate_contact_path(contact),
+                            :data => {:confirm => 'Are you sure?'}, method: :post %></td>
+        <% end %>
+        <% if !contact.active %>
+            <td><%= link_to 'Activate', activate_contact_path(contact),
+                            :data => {:confirm => 'Are you sure?'}, method: :post %></td>
+        <% end %>
+
+        <td><%= link_to 'Show', contact %></td>
+        <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+        <td><%= link_to 'Delete', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <%end%>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<%end%>
+
+</div>
+

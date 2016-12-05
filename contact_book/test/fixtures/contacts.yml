@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  business_phone: MyString
+  business_extension: 1
+  home_phone: MyString
+  emergency_contact_name: MyString
+  emergency_contact_phone: MyString
+  active: false
+
+two:
+  name: MyString
+  business_phone: MyString
+  business_extension: 1
+  home_phone: MyString
+  emergency_contact_name: MyString
+  emergency_contact_phone: MyString
+  active: false
