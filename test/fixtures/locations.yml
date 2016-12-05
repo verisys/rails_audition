@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+morgan:
+  name: Morgan
+  address: 1928 Old Street
+  city: Morgan
+  state: UT
+  zip: 84050
+
+davis:
+  name: Davis
+  address: 1212 Main Street
+  city: Layton
+  state: UT
+  zip: 84414

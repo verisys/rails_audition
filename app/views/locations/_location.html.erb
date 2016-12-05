@@ -1,0 +1,11 @@
+<li id="location-<%= location.id %>">
+  <div class="name"><%= location.name %></div>
+  <div class="address"><%= location.address %></div>
+  <span class="city"><%= location.city %></span>
+  <span class="state"><%= location.state %></span>
+  <span class="zip"><%= location.zip %></span>
+  <% if current_user.admin? %>
+  | <%= link_to "delete", location, method: :delete,
+                                data: { confirm: "You sure?" } %>
+  <% end %>
+</li>

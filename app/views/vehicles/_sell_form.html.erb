@@ -1,0 +1,26 @@
+<%= form_for(@vehicle, url: { action: "sold"}) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :sell_price %>
+  <%= f.text_field :sell_price, class: 'form-control' %>
+
+  <%= f.label :sell_notes %>
+  <%= f.text_area :sell_notes, class: 'form-control', rows: 5 %>
+
+  <%= f.hidden_field(:location) %>
+  <%= f.hidden_field(:stock) %>
+  <%= f.hidden_field(:vin) %>
+  <%= f.hidden_field(:make) %>
+  <%= f.hidden_field(:model) %>
+  <%= f.hidden_field(:color) %>
+  <%= f.hidden_field(:price) %>
+  <%= f.hidden_field(:mpg_city) %>
+  <%= f.hidden_field(:mpg_hwy) %>
+  <%= f.hidden_field(:image_url) %>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>
+
+<div>
+  <%= link_to "Cancel", current_user %>
+</div>

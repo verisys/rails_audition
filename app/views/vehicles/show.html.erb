@@ -1,0 +1,23 @@
+<% provide(:title, "#{@vehicle.year} #{@vehicle.make} #{@vehicle.model}") %>
+<div class="row">
+  <div class="col-md-12">
+    <%= link_to "Back", current_user %>
+  </div>
+  <div class="col-md-8">
+    <div class="vehicle-image"><%= image_tag(@vehicle.image_url, alt: "Vehicle Image", height: 360, width: 600) %></div>
+  </div>
+  <div class="col-md-4">
+    <ul class="list-unstyled">
+      <li><%= "#{@vehicle.year} #{@vehicle.make} #{@vehicle.model}" %></li>
+      <li><%= number_to_currency(@vehicle.price) %></li>
+      <li>Stock #: <%= @vehicle.stock %></li>
+      <li>VIN #: <%= @vehicle.vin %></li>
+      <li>Color: <%= @vehicle.color %></li>
+      <li>MPG City/Hwy: <%= "#{@vehicle.mpg_city} / #{@vehicle.mpg_hwy}" %></li>
+      <% if @vehicle.sold %>
+        <li>Sold!</li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>

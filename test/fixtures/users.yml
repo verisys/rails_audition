@@ -1,0 +1,32 @@
+curtis:
+  name: Curtis
+  email: curtis@curtisspendlove.com
+  password_digest: <%= User.digest('password') %>
+  admin: true
+  
+tony:
+  name: Tony
+  email: tonystark@ironman.com
+  password_digest: <%= User.digest('password') %>
+  
+owner:
+  name: Owner
+  email: owner@autodealership.com
+  password_digest: <%= User.digest('password') %>
+
+manager:
+  name: Manager
+  email: manager@autodealership.com
+  password_digest: <%= User.digest('password') %>
+  
+sales:
+  name: Sales
+  email: sales@autodealership.com
+  password_digest: <%= User.digest('password') %>
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  name:  <%= "User #{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+  password_digest: <%= User.digest('password') %>
+<% end %>

@@ -1,0 +1,31 @@
+<% provide(:title, @dashboard.title) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @dashboard.user %>
+        <%= @dashboard.user.name %>
+      </h1>
+    </section>
+    <section class="user_menu">
+      <ul class="list-unstyled">
+        <% if owner? %>
+          <li><%= link_to "Locations", locations_path %></li>
+        <% end %>
+        <% if manager? %>
+          <li><%= link_to "Add Vehicle", new_vehicle_path %></li>
+        <% end %>
+      </ul>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <div class="row">
+      <% if @dashboard.vehicles.any? %>
+        <%= render @dashboard.vehicles %>
+        <%= will_paginate @dashboard.vehicles %>
+      <% end %>
+    </div>
+    
+  </div>
+</div>
+

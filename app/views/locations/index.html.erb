@@ -1,0 +1,15 @@
+<% provide(:title, 'All Locations') %>
+<h1>All Locations</h1>
+
+<%= link_to "Back", current_user %>
+<%= link_to "New", new_location_path %>
+
+<%= will_paginate %>
+
+<ul class="users">
+  <% @locations.each do |location| %>
+    <%= render location %>
+  <% end %>
+</ul>
+
+<%= will_paginate %>
