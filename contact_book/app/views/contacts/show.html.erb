@@ -1,0 +1,14 @@
+<div class="container">
+	<div class="<%= 'inactive' unless @contact.active %>">
+		<h3><%= @contact.active ? @contact.name : @contact.name + " - INACTIVE" %></h3>
+		<h5>Department: <%= link_to @department.name, department_path(@department) %></h5>
+		<p>Business Phone: <%= number_to_phone(@contact.business_phone, extension: @contact.extension) %></p>
+		<p>Home Phone: <%= number_to_phone(@contact.home_phone) %></p>
+		<h5>Emergency Contact</h5>
+		<p>Name: <%= @contact.emergency_contact_name %></p>
+		<p>Phone: <%= @contact.emergency_contact_phone %></p>
+		<% if can_edit?(@contact) %>
+			<%= link_to "Edit", edit_department_contact_path(@department, @contact) %>
+		<% end %>
+	</div>
+</div>

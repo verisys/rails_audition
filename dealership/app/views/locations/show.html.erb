@@ -1,0 +1,6 @@
+<div class="text-center location">
+	<h3><%= @location.address_line_1 %></h3>
+	<h3><%= @location.address_line_2 %></h3>
+	<h3><%= "#{@location.city}, #{@location.state} #{@location.zip_code}" %></h3>
+	<h4><%= link_to "See all cars for this location", location_cars_path(@location) %></h4>
+</div>

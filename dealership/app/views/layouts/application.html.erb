@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dealership</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<header>
+  		<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+			    <div class="navbar-header">
+			      <a class="navbar-brand" href="/">
+			        Dealership
+			      </a>
+            <% if current_user %>
+              <ul class="nav navbar-nav">
+                <% if current_user.type == "Owner" %>
+                  <li class="active"><a href="/locations/new">Add Location<span class="sr-only">(current)</span></a></li>
+                <% elsif current_user.type == "InventoryManager" %>
+                <% end %>
+                <li class="active"><a href="/all_cars">All Cars<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="/locations">All Locations<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a class="no-padding"><%= link_to "Log Out", destroy_user_session_path, method: :delete %><span class="sr-only">(current)</span></a></li>
+              </ul>
+            <% else %>
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/users/sign_in">Log In<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="/users/sign_up">Sign Up<span class="sr-only">(current)</span></a></li>
+              </ul>
+            <% end %>
+			    </div>
+			  </div>
+			</nav>
+  	</header>
+    <% flash.each do |message_type, message| %>
+      <div class="container-fluid">
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

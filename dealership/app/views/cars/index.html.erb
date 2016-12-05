@@ -1,0 +1,26 @@
+<div class="container-fluid">
+	<div class="text-center location">
+		<h2>Location</h2>
+		<h3><%= @location.address_line_1 %></h3>
+		<h3><%= @location.address_line_2 %></h3>
+		<h3><%= "#{@location.city}, #{@location.state} #{@location.zip_code}" %></h3>
+	</div>
+
+	<div>
+		<% if @cars.length > 0 %>
+			<% @cars.each do |car| %>
+				<div class="car">
+					<p>Make: <%= car.make %></p>
+					<p>Model: <%= car.model %></p>
+					<p>Price: <%= car.price %></p>
+					<%= link_to "More details", location_car_path(@location, car) %>
+				</div>
+			<% end %>
+		<% else %>
+			<h2 class="text-center">No cars listed for this location</h2>
+			<% if current_user.type == "InventoryManager" %>
+				<h3 class="text-center"><%= link_to "Add a car", new_location_car_path(@location) %></h3>
+			<% end %>
+		<% end %>
+	</div>
+</div>

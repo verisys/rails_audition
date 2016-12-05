@@ -1,0 +1,6 @@
+<h2 class="center">Edit this Contact</h2>
+<% if can_edit?(@contact) %>
+	<%= render 'form' %>
+<% else %>
+	<h4>You cannot edit this contact as it is not in your department</h4>
+<% end %>

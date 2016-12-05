@@ -1,0 +1,11 @@
+<h2 class="text-center">Change Car's Location</h2>
+<div class="change-location">
+	<%= form_for [@location, @car] do |f| %>
+		<div class="form-group">
+			<%= f.label :location %>
+			<%= f.select :location, @locations.map { |l| [l.address_line_1, l.id] } %>
+			<br>
+			<%= f.submit class: "btn btn-primary location-btn" %>
+		</div>
+	<% end %>
+</div>

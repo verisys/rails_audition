@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ContactBook</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<header>
+  		<nav>
+		    <div class="nav-wrapper">
+          <div class="container">
+  		      <a href="/" class="brand-logo left">Contact Book</a>
+  		      <ul id="nav-mobile" class="right">
+              <% if current_user %>
+    		        <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+                <% if current_user.department %>
+      		        <li><%= link_to "All Departments", departments_path %></li>
+      		        <li><%= link_to "My Department", department_contacts_path(current_user.department) %></li>
+                <% end %>
+              <% else %>
+                <li><%= link_to "Log In", new_user_session_path %></li>
+                <li><%= link_to "Sign Up", new_user_registration_path %></li>
+              <% end %>
+  		      </ul>
+          </div>
+		    </div>
+		  </nav>
+  	</header>
+    <div class="row">
+      <% flash.each do |key, value| %>
+        <div class="col m4 offset-m4 s6 offset-s3">
+          <div class="valign-wrapper flash flash-<%= key %>">
+            <h4 class="valign center"><%= value %></h4>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <%= yield %>
+  </body>
+</html>

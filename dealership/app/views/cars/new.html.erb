@@ -1,0 +1,8 @@
+<h2 class="text-center">Add a car for</h2>
+<div class="text-center location">
+	<h3><%= @location.address_line_1 %></h3>
+	<h3><%= @location.address_line_2 %></h3>
+	<h3><%= "#{@location.city}, #{@location.state} #{@location.zip_code}" %></h3>
+</div>
+
+<%= render 'form' %>

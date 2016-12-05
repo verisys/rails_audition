@@ -1,0 +1,8 @@
+<h2 class="text-center">How much was the car sold for?</h2>
+<div class="col-sm-4 col-sm-offset-4"
+<div class="form-group">
+	<%= form_for [@location, @car] do |f| %>
+		<%= f.number_field :sale_price, class: "form-control" %>
+		<%= f.submit class: "btn btn-primary btn-margin" %>
+	<% end %>
+</div>
