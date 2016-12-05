@@ -1,0 +1,19 @@
+<h1>Vehicles</h1>
+<table>
+  <tr>
+    <th>Make</th>
+    <th>Model</th>
+    <th>Price</th>
+    <th>Location</th>
+  </tr>
+  <% @vehicles.each do |v| %>
+    <tr>
+      <td><%= v.make %></td>
+      <td><%= v.model %></td>
+      <td><%= v.price %></td>
+      <td><%= v.location.name %></td>
+      <td><%= link_to 'Show', vehicle_path(v) %></td>
+    </tr>
+  <% end %>
+</table>
+<p><%= link_to 'New Vehicle', new_vehicle_path %></p>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+#one:
+#  make: Firstcar
+#  model: Clunker
+#  price: 123
+#
+#two:
+#  make: Chevy
+#  model: Deadcar
+#  price: 234

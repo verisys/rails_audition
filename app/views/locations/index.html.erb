@@ -1,0 +1,15 @@
+<h1>Locations</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% @locations.each do |l| %>
+      <tr>
+        <td><%= l.name %></td>
+        <td><%= link_to 'Show', location_path(l) %></td>
+      </tr>
+  <% end %>
+
+</table>
+<p><%= link_to 'New Location', new_location_path %></p>
