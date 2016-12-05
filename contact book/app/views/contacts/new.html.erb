@@ -1,0 +1,28 @@
+<h1>New Contact Form</h1>
+
+<%= form_for @contact do |c| %>
+
+    <%= c.label :dept_name %>
+    <%= c.text_field :dept_name %><br>
+
+    <%= c.label :contact_name %>
+    <%= c.text_field :contact_name %><br>
+
+    <%= c.label :business_phone %>
+    <%= c.text_field :business_phone %><br>
+
+    <%= c.label :business_extension %>
+    <%= c.text_field :business_extension %><br>
+
+    <%= c.label :home_phone %>
+    <%= c.text_field :home_phone %><br>
+
+    <%= c.label :emergency_contact %>
+    <%= c.text_field :emergency_contact %><br>
+
+    <%= c.label :emergency_phone %>
+    <%= c.text_field :emergency_phone %><br>
+
+    <%= c.submit "Create Contact" %>
+
+<% end %>
