@@ -1,0 +1,30 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+one:
+  name: George Washington
+  dept: Revolution
+  business_phone: 123-456-6789
+  business_phone_ext: 123
+  home_phone: 234-567-8910
+  emerg_contact_name: John Adams
+  emerg_contact_number: 345-678-9101
+  active: true
+
+two:
+  name: John Adams
+  dept: Revolution
+  business_phone: 456-789-1011
+  business_phone_ext: 123
+  home_phone: 567-891-1011
+  emerg_contact_name: George Washington
+  emerg_contact_number: 678-910-1112
+  active: true
+
+three:
+  name: John Denver
+  dept: Music
+  business_phone: 789-101-1121
+  business_phone_ext: 456
+  home_phone: 891-011-1213
+  emerg_contact_name: Neil Diamond
+  emerg_contact_number: 910-111-2134
+  active: false

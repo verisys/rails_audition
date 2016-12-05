@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit a Contact</title>
+    <script
+       src="https://code.jquery.com/jquery-3.1.0.js"
+       integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="
+       crossorigin="anonymous">
+    </script>
+    <script>
+      $(document).ready(function(){
+        $( "#update_contact" ).click(function() {
+           data = { "contact": 
+                  {"name":$("#name").val(),
+                   "dept":$("#dept").val(),
+                   "business_phone":$("#bphone").val(),
+                   "business_phone_ext":$("#bphone_ext").val(),
+                   "home_phone":$("#hphone").val(),
+                   "emerg_contact_name":$("#econtact_name").val(),
+                   "emerg_contact_number":$("#econtact_num").val(),
+                   "active":$("#active").val() }};
+           $.ajax({
+             type: "PUT",
+             url: "api/v1/contacts/" + $("#id").val(),
+             data: data,
+             success: function(result) {
+               console.log("success");
+             },
+             error: function() {
+              console.log("error");
+             }});
+        });
+
+        $( "#load_contact" ).click(function() {
+           if($("#id").val() == "")
+             return;
+           $.ajax({url: "api/v1/contacts/" + $("#id").val(),
+             success: function(result) {
+               $("#name").val(result["name"]);
+               $("#active").val(result["active"]);
+               $("#dept").val(result["dept"]);
+               $("#bphone").val(result["business_phone"]);
+               $("#bphone_ext").val(result["business_phone_ext"]);
+               $("#hphone").val(result["home_phone"]);
+               $("#econtact_name").val(result["emerg_contact_name"]);
+               $("#econtact_num").val(result["emerg_contact_number"]);
+             },
+             error: function() {
+              console.log("error");
+             }});
+        });
+       });
+    </script>
+  </head>
+  <body>
+    <h1>Edit a Contact</h1>
+
+    <p>Id: <input id="id" type="text"><button id="load_contact">load</button></p>
+    <p>Name: <input id="name" type="text"></p>
+    <p>Active: <input id="active" type="text"></p>
+    <p>Dept: <input id="dept" type="text"></p>
+    <p>
+      Business Phone: <input id="bphone" type="text">
+      Ext: <input id="bphone_ext" type="text">
+    </p>
+    <p>Home Phone: <input id="hphone" type="text"></p>
+    <p>
+      Emergency Contact: <input id="econtact_name" type="text">
+      Phone Number: <input id="econtact_num" type="text">
+    </p>
+
+    <p><button id="update_contact">update</button></p>
+    
+    <hr>
+    <ul>
+      <li><a href="/">home</a></li>
+      <li><a href="add.html">add a contact</a></li>
+      <li><a href="dept.html">view a department</a></li>
+    </ul>
+  </body>
+</html>
