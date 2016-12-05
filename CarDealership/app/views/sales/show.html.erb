@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Vehicle:</strong>
+  <%= @sale.vehicle.vehicle_name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @sale.user.email %>
+</p>
+
+<p>
+  <strong>Sale price:</strong>
+  <%= number_to_currency(@sale.sale_price) %>
+</p>
+
+<p>
+  <strong>Sale date:</strong>
+  <%= @sale.created_at %>
+</p>
+
+<%= link_to 'Back', sales_path %>

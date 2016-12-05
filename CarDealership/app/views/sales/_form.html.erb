@@ -1,0 +1,31 @@
+<%= form_for(@sale) do |f| %>
+  <% if @sale.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sale.errors.count, "error") %> prohibited this sale from being saved:</h2>
+
+      <ul>
+      <% @sale.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'Vehicle' %><br />
+    <%= f.collection_select :vehicle_id, @available_vehicles, :id, :vehicle_name %>
+  </div>
+  <% if current_user.owner? %>
+ 	<div class="field">
+ 	  <%= f.label 'Seller' %><br />
+ 	  <%= f.collection_select :user_id, @sales_users, :id, :email %>
+ 	</div>
+  <% end %>
+  <div class="field">
+    <%= f.label :sale_price %><br>
+    <%= f.text_field :sale_price %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Confirm Sale', data: { confirm: 'Are you sure you want to log this sale?' }  %>
+  </div>
+<% end %>

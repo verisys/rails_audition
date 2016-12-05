@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sales</h1>
+
+<table class='table'>
+  <thead>
+    <tr>
+	  <th>Vehicle</th>
+      <th>Salesman</th>
+      <th>Sale price</th>
+	  <th>Sale Date</th>
+	  <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sales.each do |sale| %>
+      <tr>
+        <td><%= sale.vehicle.vehicle_name %>
+		<td><%= sale.user.email %></td>
+        <td><%= number_to_currency(sale.sale_price) %></td>
+		<td><%= sale.created_at %></td>
+        <td><%= link_to 'Show', sale %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sale', new_sale_path %>

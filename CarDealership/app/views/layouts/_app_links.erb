@@ -1,0 +1,9 @@
+<% if current_user.try(:owner?) %>
+  <li><%= link_to 'Locations', locations_path %></li>
+<% end %>  
+<% if current_user.try(:inventory_manager?) or current_user.try(:owner?) or current_user.try(:salesman?) %>
+  <li><%= link_to 'Vehicles', vehicles_path %></li>
+<% end %>
+<% if current_user.try(:owner?) or current_user.try(:salesman?) %>
+  <li><%= link_to 'Sales', sales_path %></li>
+<% end %>
