@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Vehicles</h1>
+
+<% if current_user.position.downcase == 'inventory manager' %>
+    <%= link_to 'New Vehicle', new_vehicle_path, class: 'btn btn-sm btn-info' %>
+<% end %>
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Price</th>
+      <th>Location</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @vehicles.each_with_index do |vehicle, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= link_to vehicle.make, vehicle %></td>
+        <td><%= link_to vehicle.model, vehicle %></td>
+        <td><%= vehicle.list_price %></td>
+        <td><%= vehicle.location.address %></td>
+        <td>
+          <% if current_user.position.downcase == 'salesman' && !vehicle.sold %>
+            <%= button_to 'Mark Sold', selling_path(vehicle: vehicle), class: 'btn btn-xs btn-success' %>
+          <% end %>
+        </td>
+        <td>
+          <% if vehicle.sold %>
+            Sold!
+          <% else %>
+              <%= link_to 'Edit', edit_vehicle_path(vehicle) %>
+          <% end %>
+        </td>
+        <td><%= link_to 'Destroy', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

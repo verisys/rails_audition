@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+
+<%= render partial: 'shower', locals: { vehicle: @vehicle } %>
+
+<% if @vehicle.sold %>
+    Vehicle Sold |
+<% else %>
+    <%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
+<% end %>
+<%= link_to 'Back', vehicles_path %>

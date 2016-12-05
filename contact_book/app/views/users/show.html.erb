@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="page-header">
+  <%= @user.first_name %>
+  <%= @user.last_name %>
+</h1>
+
+<ul class="list-group">
+  <li class="list-group-item"><strong>Department:</strong><h2> <%= @user.department.name %></h2></li>
+  <li class="list-group-item"><strong>Home Phone: </strong><h2><%= @phone_numbers['Home'] %></h2></li>
+  <li class="list-group-item"><strong>Business Phone: </strong><h2><%= @phone_numbers['Business'] %></h2></li>
+  <li class="list-group-item"><strong>Emergency Contact Name: </strong><h2><%= @user.contact_name %></h2></li>
+  <li class="list-group-item"><strong>Emergency Contact Number: </strong><h2><%= @user.contact_number %></h2></li>
+</ul>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

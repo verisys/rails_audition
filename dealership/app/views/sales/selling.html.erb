@@ -1,0 +1,14 @@
+Final Sale Details
+<%= render partial: 'vehicles/shower', locals: { vehicle: @vehicle } %>
+
+<%= form_for(@sale, url: sales_sold_path) do |f| %>
+    <%= f.hidden_field :vehicle_id, value: @vehicle.id %>
+    <div class="field">
+      <%= f.label :price, 'Final Sale Price' %>
+      <%= f.text_field :price %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
