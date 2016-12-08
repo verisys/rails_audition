@@ -19,3 +19,7 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore development and test SQLite databases.
+/db/contact_book_dev.sqlite3
+/db/contact_book_test.sqlite3
