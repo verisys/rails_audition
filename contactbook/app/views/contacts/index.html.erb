@@ -1,0 +1,8 @@
+<% if supervisors_department %>
+	<p><%= link_to 'Add contact', new_department_contact_path %></p> 
+<% end %>
+<% if @contacts.empty? %>
+	<p>No contacts found.</p>
+<% else %>
+	<%= render @contacts %>
+<% end %>

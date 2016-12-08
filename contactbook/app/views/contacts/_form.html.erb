@@ -1,0 +1,31 @@
+<% if @contact.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+ 
+    <ul>
+    <% @contact.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_for [@department, @contact] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :business_phone %>
+  <%= f.text_field :business_phone %>
+  <%= f.label :business_extension %>
+  <%= f.text_field :business_extension %>
+  <br>
+  <%= f.label :home_phone %>
+  <%= f.text_field :home_phone %>
+  <br>
+  <%= f.label "Emergency Contact" %>
+  <%= f.text_field :emergency_contact_name %>
+  <%= f.label "Emergency Contact Phone" %>
+  <%= f.text_field :emergency_contact_phone %>
+  <br>
+  <%= f.submit %>
+<% end %>
+<p><%= link_to 'Cancel', department_contacts_path %></p>
