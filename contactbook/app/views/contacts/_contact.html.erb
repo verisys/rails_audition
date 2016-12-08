@@ -1,0 +1,14 @@
+<hr>
+
+<h3><%= contact.name %></h3>
+
+<p>Business phone: <%= contact.business_phone %>, Extension: <%= contact.business_extension %></p>
+<p>Home phone: <%= contact.home_phone %></p>
+<p>Emergency contact: <%= contact.emergency_contact_name %> 
+	(<%= contact.emergency_contact_phone %>)
+</p>
+
+<% if supervisors_department %>
+	<p><%= link_to "Edit", edit_department_contact_path(@department, contact) %></p>
+   <%= render partial: 'inactive', locals: { contact: contact, department: @department } %>
+<% end %>

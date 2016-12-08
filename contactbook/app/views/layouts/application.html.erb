@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Contactsapp</title>
+    <title>Contact Book</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,12 @@
   </head>
 
   <body>
+
+  	<%= render "layouts/header" %>
+
+		<%= show_flash_messages %>
+
     <%= yield %>
+
   </body>
 </html>

@@ -1,0 +1,11 @@
+<h1>Contact Book</h1>
+
+<small>
+	Logged in as <%= signed_in_supervisor.name %>, 
+	<%= signed_in_supervisor.department.name %> Department 
+</small>
+
+<%= render @departments %>
+<h2>Department: <%= @department.name %></h2>
+
+
