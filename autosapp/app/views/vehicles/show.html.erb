@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Make:</strong>
+  <%= @vehicle.make %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @vehicle.model %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @vehicle.price %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @vehicle.location_id %>
+</p>
+
+<p>
+  <strong>Mpg:</strong>
+  <%= @vehicle.mpg %>
+</p>
+
+<p>
+  <strong>Speed:</strong>
+  <%= @vehicle.speed %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @vehicle.status %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @vehicle.color %>
+</p>
+
+<%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
+<%= link_to 'Back', vehicles_path %>
