@@ -21,5 +21,10 @@ Rails.application.routes.draw do
 
   get 'pages/:id' => 'pages#show'
 
+  post "/update_location" => 'vehicles#update_location'
+  post "/sell_vehicle" => 'vehicles#sell_vehicle'
+
+  get '/sales' => 'vehicles#sales_report'
+
   root :to => "pages#show"
 end

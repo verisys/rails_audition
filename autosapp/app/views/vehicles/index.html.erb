@@ -1,41 +1,83 @@
-<p id="notice"><%= notice %></p>
+<h1>Vehicles <%= link_to '+', new_vehicle_path, class: "btn btn-sm btn-success", title: "Add New Vehicle" %></h1>
 
-<h1>Vehicles</h1>
-
-<table>
+<table class="table table-striped">
   <thead>
-    <tr>
-      <th>Make</th>
-      <th>Model</th>
-      <th>Price</th>
-      <th>Location</th>
-      <th>Mpg</th>
-      <th>Speed</th>
-      <th>Status</th>
-      <th>Color</th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th>Make</th>
+    <th>Model</th>
+    <th>Price</th>
+    <th>Location</th>
+    <th colspan="3"></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @vehicles.each do |vehicle| %>
-      <tr>
+  <% @vehicles.each do |vehicle| %>
+      <tr id="vehicle_row<%= vehicle.id %>">
         <td><%= vehicle.make %></td>
         <td><%= vehicle.model %></td>
-        <td><%= vehicle.price %></td>
-        <td><%= vehicle.location_id %></td>
-        <td><%= vehicle.mpg %></td>
-        <td><%= vehicle.speed %></td>
-        <td><%= vehicle.status %></td>
-        <td><%= vehicle.color %></td>
-        <td><%= link_to 'Show', vehicle %></td>
-        <td><%= link_to 'Edit', edit_vehicle_path(vehicle) %></td>
-        <td><%= link_to 'Destroy', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= number_to_currency(vehicle.price) %></td>
+        <td>
+          <% if current_user.has_role?(:inventory) %>
+              <%= select_tag "location", options_from_collection_for_select(@locations, "id", "name", vehicle.location_id),
+                             onchange: "SelectLocation(#{vehicle.id})", id: "vehicle#{vehicle.id}" %>
+          <% else %>
+              <%= vehicle.location.name %>
+          <% end %>
+        </td>
+
+        <% if current_user.has_role?(:inventory) %>
+            <td><%= link_to '<i class="fa fa-search fa-navy"></i>'.html_safe, vehicle,
+                            title: "Show Vehicle Details" %></td>
+
+            <td><%= link_to '<i class="fa fa-wrench fa-orange"></i>'.html_safe, edit_vehicle_path(vehicle),
+                            title: "Edit Vehicle Details" %></td>
+
+            <td><%= link_to '<i class="fa fa-trash fa-red"></i>'.html_safe, vehicle, method: :delete,
+                            data: {confirm: 'Are you sure?'}, title: "Delete Vehicle" %></td>
+        <% else %>
+            <td>
+              <%= text_field_tag("sale_price", number_to_currency(vehicle.price), id: "sale_price#{vehicle.id}") %>
+              <%= link_to "Sell Vehicle", "#", onclick: "SellVehicle(#{vehicle.id})", class: "btn btn-sm btn-success" %>
+            </td>
+            <td><%= link_to '<i class="fa fa-search fa-navy"></i>'.html_safe, vehicle,
+                            title: "Show Vehicle Details" %></td>
+        <% end %>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 
-<br>
+<script>
+  function SelectLocation(vehicle_id) {
+    var ctrl = document.getElementById("vehicle" + vehicle_id);
 
-<%= link_to 'New Vehicle', new_vehicle_path %>
+    $.ajax({
+      url: '/update_location/',
+      type: 'POST',
+      data: {"vehicle_id": vehicle_id, "id": ctrl.value}
+    })
+        .done(function (data) {
+          alert(data.retval)
+        })
+  }
+
+  function SellVehicle(vehicle_id) {
+    var ctrl = document.getElementById("sale_price" + vehicle_id);
+
+    $.ajax({
+      url: '/sell_vehicle/',
+      type: 'POST',
+      data: {"vehicle_id": vehicle_id, "sale_price": ctrl.value}
+    })
+        .done(function (data) {
+          alert(data.retval)
+
+          var failed = data.retval.includes("Error creating sale:");
+          if  (!failed) {
+            var ctrl = document.getElementById("vehicle_row" + data.vehicle_id);
+            ctrl.style.display = 'none';
+          }
+        })
+  }
+</script>

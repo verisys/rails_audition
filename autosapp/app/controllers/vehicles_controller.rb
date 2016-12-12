@@ -21,27 +21,34 @@ class VehiclesController < ApplicationController
   # GET /vehicles
   # GET /vehicles.json
   def index
-    @vehicles = Vehicle.all
+    @vehicles = Vehicle.all.order(:id)
+    authorize @vehicles
+    @vehicles = @vehicles.to_a.delete_if {|v| !v.sale.nil? }
+    @locations = Location.all
   end
 
   # GET /vehicles/1
   # GET /vehicles/1.json
   def show
+    authorize @vehicle
   end
 
   # GET /vehicles/new
   def new
     @vehicle = Vehicle.new
+    authorize @vehicle
   end
 
   # GET /vehicles/1/edit
   def edit
+    authorize @vehicle
   end
 
   # POST /vehicles
   # POST /vehicles.json
   def create
     @vehicle = Vehicle.new(vehicle_params)
+    authorize @vehicle
 
     respond_to do |format|
       if @vehicle.save
@@ -57,6 +64,8 @@ class VehiclesController < ApplicationController
   # PATCH/PUT /vehicles/1
   # PATCH/PUT /vehicles/1.json
   def update
+    authorize @vehicle
+
     respond_to do |format|
       if @vehicle.update(vehicle_params)
         format.html { redirect_to @vehicle, notice: 'Vehicle was successfully updated.' }
@@ -71,11 +80,58 @@ class VehiclesController < ApplicationController
   # DELETE /vehicles/1
   # DELETE /vehicles/1.json
   def destroy
+    authorize @vehicle
+
     @vehicle.destroy
     respond_to do |format|
       format.html { redirect_to vehicles_url, notice: 'Vehicle was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def update_location
+    vehicle = Vehicle.find_by_id(params['vehicle_id'])
+    authorize vehicle
+
+    vehicle.location_id = params['id']
+    if vehicle.save
+      retval = "Location Updated"
+    else
+      retval = "Error Updating Location: #{vehicle.errors.messages}"
+    end
+
+    render :json => {retval: retval}
+  end
+
+  def sell_vehicle
+    vehicle = Vehicle.find_by_id(params['vehicle_id'])
+    authorize vehicle
+
+    sale_price = params['sale_price']
+
+    sale = Sale.create(vehicle_id: vehicle.id, user_id: current_user.id, price: sale_price)
+    if sale
+      vehicle.status = "sold"
+      vehicle.save
+      if vehicle
+        retval = "Vehicle sale made for #{vehicle.make}/#{vehicle.model} for #{sale_price}."
+      else
+        retval = "ERROR: Vehicle sale made for #{vehicle.make}/#{vehicle.model} for #{sale_price} but status not set to sold (#{vehicle.errors.messages})"
+      end
+    else
+      retval = "Error creating sale: #{sale.errors.messages}"
+    end
+
+    render :json => {retval: retval, vehicle_id: vehicle.id}
+  end
+
+  def sales_report
+    if current_user.has_role?(:owner)
+      @sales = Sale.all.order(created_at: :desc)
+    elsif current_user.has_role?(:sales)
+      @sales = Sale.where(user_id: current_user.id).order(created_at: :desc)
+    end
+    authorize @sales
   end
 
   private

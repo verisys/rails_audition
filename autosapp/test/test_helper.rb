@@ -5,6 +5,8 @@ require 'rails/test_help'
 require "minitest/rails"
 require 'minitest/mock'
 
+require "clearance/test_unit"
+
 require "minitest/reporters"
 Minitest::Reporters.use!(
     Minitest::Reporters::DefaultReporter.new,
@@ -18,6 +20,17 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
 end
 
 
+class ActionDispatch::IntegrationTest
+  def manual_sign_in_as(user)
+    post session_url, params: {
+        session: {
+            email: user.email,
+            password: user.password
+        }
+    }
+  end
+end

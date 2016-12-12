@@ -4,10 +4,10 @@ class MenuPolicy < Struct.new(:user, :menu)
   end
 
   def inventory?
-    !user.nil? && user.has_role?(:inventory)
+    !user.nil? && (user.has_role?(:inventory) || user.has_role?(:sales))
   end
 
   def sales?
-    !user.nil? && user.has_role?(:sales)
+    !user.nil? && (user.has_role?(:owner) || user.has_role?(:sales))
   end
 end

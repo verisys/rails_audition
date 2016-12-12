@@ -20,26 +20,31 @@ class LocationsController < ApplicationController
   # GET /locations.json
   def index
     @locations = Location.all
+    authorize @locations
   end
 
   # GET /locations/1
   # GET /locations/1.json
   def show
+    authorize @location
   end
 
   # GET /locations/new
   def new
     @location = Location.new
+    authorize @location
   end
 
   # GET /locations/1/edit
   def edit
+    authorize @location
   end
 
   # POST /locations
   # POST /locations.json
   def create
     @location = Location.new(location_params)
+    authorize @location
 
     respond_to do |format|
       if @location.save
@@ -55,6 +60,8 @@ class LocationsController < ApplicationController
   # PATCH/PUT /locations/1
   # PATCH/PUT /locations/1.json
   def update
+    authorize @location
+
     respond_to do |format|
       if @location.update(location_params)
         format.html { redirect_to @location, notice: 'Location was successfully updated.' }
@@ -69,6 +76,8 @@ class LocationsController < ApplicationController
   # DELETE /locations/1
   # DELETE /locations/1.json
   def destroy
+    authorize @location
+
     @location.destroy
     respond_to do |format|
       format.html { redirect_to locations_url, notice: 'Location was successfully destroyed.' }
