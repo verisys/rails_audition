@@ -93,11 +93,16 @@ class VehiclesController < ApplicationController
     vehicle = Vehicle.find_by_id(params['vehicle_id'])
     authorize vehicle
 
-    vehicle.location_id = params['id']
-    if vehicle.save
-      retval = "Location Updated"
+    location = Location.find_by_id(params['id'])
+    unless location.nil?
+      vehicle.location_id = location.id
+      if vehicle.save
+        retval = "Location Updated"
+      else
+        retval = "Error Updating Location: #{vehicle.errors.messages}"
+      end
     else
-      retval = "Error Updating Location: #{vehicle.errors.messages}"
+      retval = "Error Updating Location: Invalid Location Selected"
     end
 
     render :json => {retval: retval}
@@ -126,10 +131,12 @@ class VehiclesController < ApplicationController
   end
 
   def sales_report
-    if current_user.has_role?(:owner)
+    if current_user && current_user.has_role?(:owner)
       @sales = Sale.all.order(created_at: :desc)
-    elsif current_user.has_role?(:sales)
+    elsif current_user && current_user.has_role?(:sales)
       @sales = Sale.where(user_id: current_user.id).order(created_at: :desc)
+    else
+      @sales = Sale.all  # this will raise exception for authorization
     end
     authorize @sales
   end

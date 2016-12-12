@@ -114,3 +114,7 @@ I added a sales report page (menu option 'sales') that shows the sales for the c
 a salesman and for the whole company if the user is the owner.  Thought it made sense to do something like this.
 This report could be expanded quite a bit - ability to group the sales data by location, by salesman (for owner report),
 order by sale price... etc.  I did not do this for the audition.
+
+My original design included a status field for the vehicles but this has become obsolete during development and
+is a tougher field to maintain and keep valid.  My next step on this project would be to remove that field and 
+ensure that all the tests etc pass - and ensure that nothing is using the vehicle.status field, displaying it etc.

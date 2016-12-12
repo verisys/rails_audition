@@ -95,7 +95,7 @@ class LocationsControllerTest < ActionDispatch::IntegrationTest
       end
 
       it "creates location" do
-        post locations_url, params: {location: {city: dlr_location.city, name: dlr_location.name,
+        post locations_url(as: @user), params: {location: {city: dlr_location.city, name: dlr_location.name,
                                                 phone: dlr_location.phone, state: dlr_location.state,
                                                 street: dlr_location.street, zip: dlr_location.zip}}
         value(response).must_be :redirect?
@@ -118,7 +118,7 @@ class LocationsControllerTest < ActionDispatch::IntegrationTest
       end
 
       it "updates location" do
-        patch location_url(dlr_location), params: {location: {city: dlr_location.city, name: dlr_location.name,
+        patch location_url(dlr_location, as: @user), params: {location: {city: dlr_location.city, name: dlr_location.name,
                                                               phone: dlr_location.phone, state: dlr_location.state,
                                                               street: dlr_location.street, zip: dlr_location.zip}}
         value(response).must_be :redirect?

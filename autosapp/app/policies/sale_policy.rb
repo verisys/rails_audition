@@ -7,7 +7,7 @@ class SalePolicy
   end
 
   def sales_report?
-    true
+    @user && (@user.has_role?(:owner) || @user.has_role?(:sales) || (@user.has_role?(:admin)))
   end
 end
 
