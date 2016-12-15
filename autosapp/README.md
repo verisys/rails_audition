@@ -1,4 +1,44 @@
+# NEW PULL REQUEST NOTE
+
+When I originally submitted this project my goal was to present the concepts and show some basic abilities.  
+Although the project said to fully test and deliver a production ready application, I am currently working 
+full time and did not have the time to build fully fleshed out application(s).  I made the comments I did 
+in the readme to indicate this and to indicate things I would spend more effort on for a production app – 
+this to acknowledge that these things were still in the backlog for this project. I did not work on this 
+during regular work hours but I’m an executive in my company and always on the clock.  If I were working 
+for Verisys, I would spend my time fully committed to your projects – this is an integrity issue for me.  
+I hope you understand this.  Without going into details, my current employer is undergoing some major 
+restructuring which is very demanding on my time right now.  
+
+
+I did miss some important tests, the referential integrity issue with the Location model and the problem 
+with posting the price data when a sale was made.  These were definitely major deficits in my application.
+
+
+I appreciate the feedback I received and have spent a little more time cleaning up some of the issues 
+reported.  This was done because I do care about my craft and want to leave a good impression.  I still 
+do not have the time to make this fully production ready.  I also did not consider making a staging 
+environment or integration into a CI process, which a professional development life cycle would require.
+
+
+Some comments were made about me using generated code.  Yes, I used scaffolding to start with.  In a real 
+application I might use scaffolding but EVERY form and page would be cleaned up with correct CSS (in this 
+case for bootstrap), layout etc.  I would also improve the controller behaviors as needed.  I felt, in the 
+effort of time, delivering a product (MVP) to solve the use cases for evaluation was a viable choice.  An 
+application like this would go through numerous phases: proof of concept, alpha, beta, release candidate etc – 
+all evaluated by a product owner on each iteration so the project can be adjusted and the final delivery is 
+much tighter and appealing.
+
+
+I would hope that this Pull Request would be evaluated again.  I would like more feedback if you’re willing 
+and consideration for a position.  My timeline, as I’ve told Teres is very short right now so that may no 
+longer be realistic.  I’m a solid employee and I have a lot of experience in development industry.  Thank 
+you for your consideration.
+
+
+
 # README
+
 
 This README would normally document whatever steps are necessary to get the
 application up and running.

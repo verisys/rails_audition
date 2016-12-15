@@ -111,8 +111,7 @@ class VehiclesController < ApplicationController
   def sell_vehicle
     vehicle = Vehicle.find_by_id(params['vehicle_id'])
     authorize vehicle
-
-    sale_price = params['sale_price']
+    sale_price = params['sale_price'][1..-1].gsub(',','')
 
     sale = Sale.create(vehicle_id: vehicle.id, user_id: current_user.id, price: sale_price)
     if sale
@@ -131,14 +130,15 @@ class VehiclesController < ApplicationController
   end
 
   def sales_report
-    if current_user && current_user.has_role?(:owner)
-      @sales = Sale.all.order(created_at: :desc)
-    elsif current_user && current_user.has_role?(:sales)
+    if current_user && (current_user.has_role?(:owner) || current_user.has_role?(:admin))
+      @sales = Sale.all
+    elsif current_user
       @sales = Sale.where(user_id: current_user.id).order(created_at: :desc)
     else
       @sales = Sale.all  # this will raise exception for authorization
     end
     authorize @sales
+    @sales.order(created_at: :desc)
   end
 
   private

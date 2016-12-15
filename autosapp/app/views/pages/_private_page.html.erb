@@ -1,17 +1,20 @@
-<h1>Dealership</h1>
 
-<h3>Welcome to the Dealership website <%= current_user.email %> .</h3>
+<br/>
+<div class="alert alert-primary">
+  <h1>Dealership</h1>
 
-<div class="row">
+  <h3>Welcome to the Dealership website <%= current_user.email %> .</h3>
+</div>
 
-  <div class="col-xs-3">
-    <div class="alert alert-success">
-      Beautiful Porsche for sale.  Only $1.8 Million to drive off the lot.  <br/>
-      A 74 MPG e-Hybrid!
+
+  <div class="row">
+
+    <div class="col-xs-3">
+      <div class="alert alert-primary">
+        Beautiful Porsche for sale. Drive it off the lot for ONLY $1.8 Million!<br/>
+      </div>
+
     </div>
 
   </div>
-  <div class="col-xs-4">
-    <%= image_tag("porsche2.jpg", width: "100%") %>
-  </div>
-</div>
+

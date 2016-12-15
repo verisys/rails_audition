@@ -1,44 +1,59 @@
-<p id="notice"><%= notice %></p>
+<div class="content">
+  <div class="row">
+    <div class="col-xs-3">
+      <p>
+        <strong>Make:</strong>
+        <%= @vehicle.make %>
+      </p>
 
-<p>
-  <strong>Make:</strong>
-  <%= @vehicle.make %>
-</p>
+      <p>
+        <strong>Model:</strong>
+        <%= @vehicle.model %>
+      </p>
 
-<p>
-  <strong>Model:</strong>
-  <%= @vehicle.model %>
-</p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @vehicle.price %>
-</p>
+    </div>
+    <div class="col-xs-4">
+      <p>
+        <strong>Location:</strong>
+        <%= @vehicle.location.name %>
+      </p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @vehicle.location_id %>
-</p>
+      <p>
+        <strong>Status:</strong>
+        <%= @vehicle.status %>
+      </p>
+    </div>
+    <div class="col-xs-2">
+      <p>
+        <strong>Color:</strong>
+        <%= @vehicle.color %>
+      </p>
 
-<p>
-  <strong>Mpg:</strong>
-  <%= @vehicle.mpg %>
-</p>
+      <p>
+        <strong>Mpg:</strong>
+        <%= @vehicle.mpg %>
+      </p>
+    </div>
+    <div class="col-xs-3">
+      <p>
+        <strong>Speed:</strong>
+        <%= @vehicle.speed %>
+      </p>
 
-<p>
-  <strong>Speed:</strong>
-  <%= @vehicle.speed %>
-</p>
+      <p>
+        <strong>Price:</strong>
+        <%= number_to_currency(@vehicle.price) %>
+      </p>
+    </div>
+  </div>
 
-<p>
-  <strong>Status:</strong>
-  <%= @vehicle.status %>
-</p>
 
-<p>
-  <strong>Color:</strong>
-  <%= @vehicle.color %>
-</p>
 
-<%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
-<%= link_to 'Back', vehicles_path %>
+
+
+  <% if policy(@vehicle).edit? %>
+      <%= link_to 'Edit', edit_vehicle_path(@vehicle), class: "btn btn-sm btn-success" %> |
+  <% end %>
+  <%= link_to 'Inventory', vehicles_path, class: "btn btn-sm btn-info" %>
+</div>

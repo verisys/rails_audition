@@ -78,10 +78,16 @@ class LocationsController < ApplicationController
   def destroy
     authorize @location
 
-    @location.destroy
-    respond_to do |format|
-      format.html { redirect_to locations_url, notice: 'Location was successfully destroyed.' }
-      format.json { head :no_content }
+    if @location.vehicles.count > 0
+      respond_to do |format|
+        format.html { redirect_to locations_url, alert: 'Location not destroyed.  Still has vehicles!' }
+        format.json { head :no_content }
+      end    else
+      @location.destroy
+      respond_to do |format|
+        format.html { redirect_to locations_url, notice: 'Location was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 

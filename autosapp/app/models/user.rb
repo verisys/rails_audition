@@ -12,7 +12,8 @@
 #
 
 class User < ApplicationRecord
-  rolify
+  rolify strict: true
+
   include Clearance::User
 
   has_many :sales
