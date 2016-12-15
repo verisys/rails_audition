@@ -1,0 +1,64 @@
+<div class="content">
+  <div class="row">
+    <div class="col-xs-4">
+      <p>
+        <strong>Name:</strong>
+        <%= @location.name %>
+      </p>
+
+      <p>
+        <strong>Street:</strong>
+        <%= @location.street %>
+      </p>
+
+      <p>
+        <strong>City:</strong>
+        <%= @location.city %>
+      </p>
+
+      <p>
+        <strong>State:</strong>
+        <%= @location.state %>
+      </p>
+
+      <p>
+        <strong>Zip:</strong>
+        <%= @location.zip %>
+      </p>
+
+      <p>
+        <strong>Phone:</strong>
+        <%= @location.phone %>
+      </p>
+    </div>
+
+    <div class="col-xs-8">
+      <table class="table table-striped well">
+        <tr>
+          <th>Year</th>
+          <th>Make</th>
+          <th>Model</th>
+          <th>Color</th>
+        </tr>
+        <% @location.vehicles.each do |vehicle| %>
+            <tr>
+              <td>
+                <%= vehicle.year %>
+              </td>
+              <td>
+                <%= vehicle.make %>
+              </td>
+              <td>
+                <%= vehicle.model %>
+              </td>
+              <td>
+                <%= vehicle.color %>
+              </td>
+            </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+  <%= link_to 'Close', locations_path, class: "btn btn-sm btn-primary" %>
+</div>

@@ -11,6 +11,21 @@
 // about supported directives.
 //
 //= require jquery
+
+//= require tether
+//= require bootstrap
+
+
+
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(function()
+{
+    $('.alert-info').delay(3000).fadeIn('normal', function()
+    {
+        $(this).delay(4000).fadeOut();
+    });
+});

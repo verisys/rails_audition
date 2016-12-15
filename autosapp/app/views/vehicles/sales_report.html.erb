@@ -1,0 +1,23 @@
+<div class="content">
+  <h1>Sales Report</h1>
+
+  <table class="table table-striped">
+    <tr>
+      <th>Date</th>
+      <th>Year/Make/Model</th>
+      <th>Location</th>
+      <th>SalesMan</th>
+      <th>Sale Price</th>
+    </tr>
+
+    <% @sales.each do |sale| %>
+        <tr>
+          <td><%= sale.created_at.strftime("%Y-%m-%d") %></td>
+          <td><%= "#{sale.vehicle.year}/#{sale.vehicle.make}/#{sale.vehicle.model}" %></td>
+          <td><%= sale.vehicle.location.name %></td>
+          <td><%= sale.user.email %></td>
+          <td><%= number_to_currency(sale.price) %></td>
+        </tr>
+    <% end %>
+  </table>
+</div>
