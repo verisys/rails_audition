@@ -1,3 +1,23 @@
-<% @employees.each do |employee| %>
-  <h5><%= "#{employee.name} | #{employee.role}" %><h5>
-<% end %>
+<div class="container">
+  <div class="row justify-content-center title-padding">
+    <h1><%= "Employees at #{@location.name}"%><h1>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @employees.each do |employee| %>
+        <tr>
+          <td><p class="lead"><%= "#{employee.name}" %></p></td>
+          <td><p class="lead"><%="#{employee.role}" %></p></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

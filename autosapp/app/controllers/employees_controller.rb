@@ -1,5 +1,6 @@
 class EmployeesController < ApplicationController
   before_action :set_employee, only: [:destroy, :edit, :show, :update]
+  before_action :set_location, only: [:index]
 
   def create
     employee = ::Employee.new(employee_params)

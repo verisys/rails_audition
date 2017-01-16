@@ -1,3 +1,31 @@
-<% @cars.each do |car| %>
-  <h5><%= "#{car.make} #{car.model}" %><h5>
-<% end %>
+<div class="container">
+  <div class="row justify-content-center title-padding">
+    <h1><%= "Cars at #{@location.name}"%><h1>
+  </div>
+    <div class="row">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Price</th>
+            <th>Sold</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cars.each do |car| %>
+          <tr>
+            <td><p class="lead"><%= "#{car.make}" %></p></td>
+            <td><p class="lead"><%="#{car.model}" %></p></td>
+            <td><p class="lead"><%="#{car.price}" %></p></td>
+            <% if car.sold %>
+              <td><p class="lead">Yes</p></td>
+            <% else %>
+              <td><p class="lead">No</p></td>
+            <% end %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+</div>

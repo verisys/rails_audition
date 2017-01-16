@@ -1,5 +1,6 @@
 class CarsController < ApplicationController
   before_action :set_car, only: [:destroy, :edit, :show, :update]
+  before_action :set_location, only: [:index]
 
   def create
     car = ::Car.new(car_params)
