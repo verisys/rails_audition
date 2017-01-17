@@ -1,15 +1,21 @@
 class CarsController < ApplicationController
   before_action :set_car, only: [:destroy, :edit, :show, :update]
-  before_action :set_location, only: [:index]
+  before_action :set_location, only: [:index, :new, :create, :show]
+
+  def all_cars
+    @cars = ::Car.all
+    render 'index'
+  end
 
   def create
     car = ::Car.new(car_params)
     if car.save
       flash[:success] = 'Successfully created a new car.'
+      redirect_to location_cars_path(params[:location_id])
     else
       flash[:error] = 'Could not create car.'
+      render 'new'
     end
-    redirect_to location_cars_path(params[:location_id])
   end
 
   def destroy
@@ -47,7 +53,8 @@ class CarsController < ApplicationController
   end
 
   def set_car
-    @car = @location.cars.find(params[:id])
+    location = ::Location.find(params[:location_id])
+    @car = location.cars.find(params[:id])
   end
 
   def set_location

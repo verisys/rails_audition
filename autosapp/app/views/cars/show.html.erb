@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <p><%= "Make: #{@car.make}" %></p>
+  </div>
+  <div class="row">
+    <p><%= "Model: #{@car.model}" %></p>
+  </div>
+  <div class="row">
+    <p><%= "Price: $#{@car.price}" %></p>
+  </div>
+  <div class="row">
+    <p><%= "Sold: #{@car.sold}" %></p>
+  </div>
+  <div class="row">
+    <p><%= "Sold by: #{@car.sold}" %></p>
+  </div>
+  <div class="row">
+    <p><%= "Sold Price: $#{@car.sold_price}" %></p>
+  </div>
+  <div class="row">
+    <p><%= "Location: #{@car.location.name}" %></p>
+  </div>
+  <div class="row">
+    <%= link_to "Edit Car", edit_location_car_path(@location) %>
+  </div>
+  <div class="row">
+    <%= link_to 'Delete Car', location_car_path(@location, @car), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+</div>
