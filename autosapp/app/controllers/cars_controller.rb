@@ -11,7 +11,7 @@ class CarsController < ApplicationController
     car = ::Car.new(car_params)
     if car.save
       flash[:success] = 'Successfully created a new car.'
-      redirect_to location_cars_path(params[:location_id])
+      redirect_to all_cars_path
     else
       flash[:error] = 'Could not create car.'
       render 'new'
@@ -24,6 +24,7 @@ class CarsController < ApplicationController
   end
 
   def edit
+    @locations = ::Location.all.map { |location| [location.name, location.id] }
   end
 
   def index
@@ -38,8 +39,10 @@ class CarsController < ApplicationController
   end
 
   def update
+    @location = ::Location.find(params[:location_id])
+    @car = @location.cars.find(params[:id])
     if @car.update(car_params)
-      redirect_to location_car_path(@location.id, @car.id)
+      redirect_to all_cars_path
     else
       flash[:error] = 'Could not update car.'
       render 'edit'
@@ -53,8 +56,8 @@ class CarsController < ApplicationController
   end
 
   def set_car
-    location = ::Location.find(params[:location_id])
-    @car = location.cars.find(params[:id])
+    set_location
+    @car = @location.cars.find(params[:id])
   end
 
   def set_location
