@@ -14,7 +14,7 @@ class EmployeesController < ApplicationController
     else
       flash[:error] = 'Could not create employee.'
     end
-    redirect_to location_employee_path(params[:location_id])
+    redirect_to all_employees_path
   end
 
   def destroy
@@ -52,6 +52,7 @@ class EmployeesController < ApplicationController
   end
 
   def set_employee
+    set_location
     @employee = @location.employees.find(params[:id])
   end
 
