@@ -1,0 +1,56 @@
+<div class="container">
+    <%= form_for @location do |f| %>
+    <form>
+      <div class="form-group row">
+        <label for="example-text-input" class="col-2 col-form-label">
+          <%= f.label :name %>
+        </label>
+        <div class="col-10">
+          <%= f.text_field :name %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="example-text-input" class="col-2 col-form-label">
+          <%= f.label :street_address %>
+        </label>
+        <div class="col-10">
+          <%= f.text_field :street_address %>
+        </div>
+      </div>
+
+          <%= hidden_field(:car, :location_id, :value => @location.id) %>
+
+      <div class="form-group row">
+        <label for="example-text-input" class="col-2 col-form-label">
+          <%= f.label :city %>
+        </label>
+        <div class="col-10">
+          <%= f.text_field :city %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="example-text-input" class="col-2 col-form-label">
+          <%= f.label :state %>
+        </label>
+        <div class="col-10">
+          <%= f.text_field :state %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="example-text-input" class="col-2 col-form-label">
+          <%= f.label :zip_code %>
+        </label>
+        <div class="col-10">
+          <%= f.text_field :zip_code %>
+        </div>
+      </div>
+
+      <div class="form-group row actions" >
+        <%= f.submit "Add" %>
+      </div>
+    </form>
+    <% end %>
+</div>

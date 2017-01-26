@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="title-padding">
+      <%= link_to "Add New Location", new_location_path %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="title-padding">
+      <h1><%= "Dealership Locations"%><h1>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Zip Code</th>
+          <th>Add Car Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @locations.each do |location| %>
+        <tr>
+          <td><p class="lead"><%= link_to "#{location.name}", location_path(location) %></p></td>
+          <td><p class="lead"><%="#{location.city}" %></p></td>
+          <td><p class="lead"><%="#{location.state}" %></p></td>
+          <td><p class="lead"><%="#{location.zip_code}" %></p></td>
+          <td><p class="lead"><%= link_to "Add Car", new_location_car_path(location) %></p></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

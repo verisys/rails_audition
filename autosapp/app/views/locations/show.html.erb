@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="title-padding">
+      <h3><%= "#{@location.name}" %></h3>
+    </div>
+  </div>
+  <div class="row">
+    <p><%= "#{@location.street_address}" %></p>
+  </div>
+  <div class="row">
+    <p><%= "#{@location.city}" %></p>
+  </div>
+  <div class="row">
+    <p><%= "#{@location.state}" %></p>
+  </div>
+  <div class="row">
+    <p><%= "#{@location.zip_code}" %></p>
+  </div>
+  <div class="row">
+    <%= link_to "Edit Location", edit_location_path %>
+  </div>
+  <div class="row">
+    <%= link_to 'Delete Location', @location, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+</div>
