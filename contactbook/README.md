@@ -1,6 +1,7 @@
 # CONTACT BOOK
 
-### Seed file to create Users (supervisors) and 10 contacts per
+### rake task to create Users (supervisors) and 10 contacts per
+### rake populate:users_and_contacts
 ### List of Users
 
 * email: 'bob@example.com', password: 'password', department: 'IT'
