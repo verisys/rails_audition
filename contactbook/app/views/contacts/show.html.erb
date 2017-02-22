@@ -1,0 +1,22 @@
+<div class='twelve columns'>
+  <div class='twelve columns center'>
+    <h3><%= @contact.name %></h3>
+    <% if @contact.user_id == current_user.id %>
+      <%= link_to 'Edit', edit_contact_path(@contact), class: 'button' %>
+      <%= link_to 'Delete', contact_path(@contact), data: {confirm: "Delete #{@contact.name}?"}, method: :delete, class: 'button button-danger' %>
+    <% end %>
+    <hr>
+  </div>
+  <div class='six columns offset-by-three'>
+    <h5><strong>Department:</strong> <%= @contact.department %></h5>
+    <h5><strong>B.Phone: </strong> <%= @contact.business_phone %> <%= @contact.extension %></h5>
+    <h5><strong>H.Phone: </strong> <%= @contact.home_phone %></h5>
+    <h5><strong>Emergency Contact Information</strong></h5>
+    <h5><strong>Name: </strong> <%= @contact.emergency_contact_name%></h5>
+    <h5><strong>Phone: </strong> <%= @contact.emergency_contact_phone%></h5>
+    <h5><strong>Active:</strong> <%= @contact.active ? 'Yes' : 'No' %></h5>
+    <% if @contact.user_id == current_user.id %>
+      <%= link_to active_contact_path(@contact), class: 'button', method: :put do %><%= @contact.active ? 'Deactivate' : 'Activate' %><% end %>
+    <% end %>
+  </div>
+</div>
