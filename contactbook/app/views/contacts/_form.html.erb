@@ -1,0 +1,44 @@
+<div class='twelve columns'>
+
+  <div class='six columns offset-by-three'>
+    <%= form_for @contact do |f| %>
+
+    <div class='field'>
+      <%= f.label :department %>
+      <%= f.text_field :department, required: true, autofocus: true %>
+    </div>
+
+    <div class='field'>
+      <%= f.label :name %>
+      <%= f.text_field :name, required: true %>
+    </div>
+
+    <div class='field'>
+      <%= f.label :business_phone %>
+      <%= f.text_field :business_phone %>
+    </div>
+
+    <div class='field'>
+      <%= f.label :extension %>
+      <%= f.text_field :extension %>
+    </div>
+
+    <div class='field'>
+      <%= f.label :home_phone %>
+      <%= f.text_field :home_phone %>
+    </div>
+
+    <div class='field'>
+      <%= f.label :emergency_contact_name %>
+      <%= f.text_field :emergency_contact_name, required: true %>
+    </div>
+
+    <div class='field'>
+      <%= f.label :emergency_contact_phone %>
+      <%= f.text_field :emergency_contact_phone, required: true %>
+    </div>
+
+    <%= f.submit 'Save Contact', class: 'button' %>
+    <% end %>
+  </div>
+</div>

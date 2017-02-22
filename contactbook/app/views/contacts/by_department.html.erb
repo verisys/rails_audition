@@ -1,0 +1,42 @@
+<div class='twelve columns'>
+  <div class='center'>
+    <h3><%= @department %>'s contacts </h3>
+    <hr>
+  </div>
+
+  <div class='container'>
+    <% if @contacts.any? %>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Business Phone</th>
+            <th>Extension</th>
+            <th>Home Phone</th>
+            <th colspan='2'>Emergency Contact Info</th>
+            <th>Active</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @contacts.each do |contact| %>
+            <tr>
+              <td><%= link_to contact.name, contact_path(contact) %></td>
+              <td><%= contact.department %></td>
+              <td><%= contact.business_phone %></td>
+              <td><%= contact.extension %></td>
+              <td><%= contact.home_phone %></td>
+              <td><%= contact.emergency_contact_name %></td>
+              <td><%= contact.emergency_contact_phone %></td>
+              <td><%= contact.active ? 'Yes' : 'No' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <div class='center'>
+        <h3>Nothing to see here</h3>
+      </div>
+    <% end %>
+  </div>
+</div>

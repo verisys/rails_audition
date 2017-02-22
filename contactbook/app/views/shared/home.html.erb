@@ -1,0 +1,18 @@
+<div class='twelve columns center'>
+  <% if signed_in? %>
+    <div class='twelve columns'>
+      <h3 class='home-title'>Welcome, <%= current_user.email %>!</h3>
+      <%= link_to 'My Contacts', contacts_path, class: 'button' %>
+      <p class='pad-top-sm'>or</p>
+      <%= form_tag('/contacts/by_department') do  %>
+        <%= select_tag "department", options_for_select(Contact.departments), prompt: 'Select Department', required: true %>
+        <%= submit_tag 'Go' %>
+      <% end %>
+    </div>
+
+  <% else %>
+    <h3 class='home-title'>Welcome, please sign up or log in to continue.</h3>
+    <%= link_to 'Log In', new_user_session_path, class: 'button' %>
+    <%= link_to 'Sign Up', new_user_registration_path, class: 'button' %>
+  <% end %>
+</div>

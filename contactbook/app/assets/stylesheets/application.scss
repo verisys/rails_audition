@@ -1,0 +1,142 @@
+@import 'normalize';
+@import 'skeleton';
+
+
+/*=====================================================
+COLORS
+=====================================================*/
+
+$WHITE: rgb(245, 245, 245);
+$BLACK: rgb(10, 10, 10);
+$BLUE: rgb(30, 174, 219);
+$DARK-BLUE: rgb(15, 161, 207);
+$RED: rgb(255, 34, 34);
+
+
+/*=====================================================
+CUSTOM
+=====================================================*/
+
+body, html {
+  color: $BLACK;
+  background-color: $WHITE;
+}
+
+.center {
+  text-align: center;
+}
+
+.pad-top-sm {
+  padding-top: 15px;
+}
+
+/*=====================================================
+LINKS
+=====================================================*/
+
+a {
+  text-decoration: none;
+}
+
+/*=====================================================
+NAVBAR
+=====================================================*/
+
+.navbar {
+  background: $BLACK;
+  color: $WHITE;
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 40px;
+}
+
+.navbar .nav-brand, .nav-links {
+  display: inline-block;
+}
+
+.nav-links {
+  padding: 0;
+  float: right;
+}
+
+.nav-links li {
+  display: inline-block;
+  margin: 0;
+  padding-right: 5px;
+  color: $WHITE;
+}
+
+.nav-brand {
+  margin: 0 5px;
+  color: $WHITE;
+}
+
+.nav-brand:hover {
+  color: $DARK-BLUE;
+}
+
+/*=====================================================
+ALERT
+=====================================================*/
+
+.alert {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/*=====================================================
+HOME
+=====================================================*/
+
+.home-title {
+  margin-bottom: 40px;
+}
+
+/*=====================================================
+USERS & CONTACTS
+=====================================================*/
+
+.deactive {
+  color: $RED;
+}
+
+.deactive a {
+  color: $RED;
+}
+
+.deactive a:hover {
+  color: darken($RED, 20%);
+}
+
+/*=====================================================
+INPUTS & BUTTONS
+=====================================================*/
+
+input[type='email'], input[type='password'], input[type='text'], textarea {
+  width: 100%;
+  background: none;
+}
+
+// Removes yellow autocomplete grossness
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+label {
+  margin: 0;
+  padding: 0;
+  text-transform: capitalize;
+}
+
+.button-danger {
+  border: 1px solid lighten($RED, 20%);
+  color: $RED;
+}
+
+.button-danger:hover {
+  border: 1px solid darken($RED, 15%);
+  color: $RED;
+}
