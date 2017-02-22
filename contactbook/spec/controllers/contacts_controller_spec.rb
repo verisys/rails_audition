@@ -12,7 +12,7 @@ describe ContactsController, type: :controller do
 
   describe 'GET index' do
     before(:each) do
-      @contact = FactoryGirl.create(:contact)
+      @contact = FactoryGirl.create(:contact, department: 'Support')
       get :index
     end
 
@@ -32,7 +32,7 @@ describe ContactsController, type: :controller do
 
   describe 'GET show' do
     before(:each) do
-      @contact = FactoryGirl.create(:contact)
+      @contact = FactoryGirl.create(:contact, department: 'Support')
       get :show, params: { id: @contact.id }
     end
 
@@ -51,7 +51,7 @@ describe ContactsController, type: :controller do
 
   describe 'GET edit' do
     before(:each) do
-      @contact = FactoryGirl.create(:contact)
+      @contact = FactoryGirl.create(:contact, department: 'Support')
       get :edit, params: { id: @contact.id }
     end
 
@@ -126,7 +126,7 @@ describe ContactsController, type: :controller do
 
   describe 'PUT update' do
     before(:each) do
-      @contact = FactoryGirl.create(:contact)
+      @contact = FactoryGirl.create(:contact, department: 'Support')
       @name = @contact.name
     end
 
@@ -165,7 +165,7 @@ describe ContactsController, type: :controller do
 
   describe 'DELETE destroy' do
     before(:each) do
-      @contact = FactoryGirl.create(:contact)
+      @contact = FactoryGirl.create(:contact, department: 'Support')
       expect(Contact.count).to eq(1)
       delete :destroy, params: { id: @contact.id }
     end
@@ -181,7 +181,7 @@ describe ContactsController, type: :controller do
 
   describe 'PUT active' do
     before(:each) do
-      @contact = FactoryGirl.create(:contact)
+      @contact = FactoryGirl.create(:contact, department: 'Support')
       expect(@contact.active).to eq(true)
       put :active, params: { id: @contact.id }
     end
@@ -197,17 +197,16 @@ describe ContactsController, type: :controller do
 
   describe 'PUT by_department' do
     before(:each) do
-      @contact = FactoryGirl.create(:contact)
+      @contact = FactoryGirl.create(:contact, department: 'IT')
       put :by_department, params: { department: 'IT' }
     end
 
-    it 'renders the index page' do
-      expect(response).to render_template(:index)
+    it 'redirects to department path' do
+      expect(response).to redirect_to(department_path(department: 'IT'))
     end
 
-    it 'sets the contacts instance variable' do
-      expect(assigns(:contacts)).to_not eq(nil)
-      expect(assigns(:contacts).first.department).to eq('IT')
+    it 'contacts instance variable' do
+      expect(assigns(:contacts)).to eq(nil)
     end
   end
 

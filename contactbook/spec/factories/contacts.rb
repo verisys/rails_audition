@@ -1,9 +1,10 @@
 require 'faker'
 
 FactoryGirl.define do
-
   factory :contact do
-    department 'IT'
+    trait :department do
+      department
+    end
     name { Faker::Name.name }
     business_phone { Faker::PhoneNumber.cell_phone }
     extension { Faker::PhoneNumber.extension }

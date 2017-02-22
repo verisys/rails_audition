@@ -5,12 +5,12 @@
 
     <div class='field'>
       <%= f.label :department %>
-      <%= f.text_field :department, required: true, autofocus: true %>
+      <%= f.text_field :department, readonly: true, value: current_user.department %>
     </div>
 
     <div class='field'>
       <%= f.label :name %>
-      <%= f.text_field :name, required: true %>
+      <%= f.text_field :name, required: true, autofocus: true %>
     </div>
 
     <div class='field'>

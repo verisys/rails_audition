@@ -4,7 +4,7 @@
       <h3 class='home-title'>Welcome, <%= current_user.email %>!</h3>
       <%= link_to 'My Contacts', contacts_path, class: 'button' %>
       <p class='pad-top-sm'>or</p>
-      <%= form_tag('/contacts/by_department') do  %>
+      <%= form_tag(by_department_path) do  %>
         <%= select_tag "department", options_for_select(Contact.departments), prompt: 'Select Department', required: true %>
         <%= submit_tag 'Go' %>
       <% end %>

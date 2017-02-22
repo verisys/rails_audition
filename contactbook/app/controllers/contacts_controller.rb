@@ -3,7 +3,7 @@ class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy, :active]
 
   def index
-    @contacts = @supervisor.contacts.order(active: :desc)
+    @contacts = Contact.where(department: @supervisor.department)
   end
 
   def show
@@ -46,11 +46,15 @@ class ContactsController < ApplicationController
 
   def active
     @contact.update(active: !@contact.active)
-    flash[:success] = "#{@contact.active ? 'Activated' : 'Decativated'} #{@contact.name}"
+    flash[:success] = "#{@contact.active ? 'Activated' : 'Deactivated'} #{@contact.name}"
     redirect_back(fallback_location: contact_path(@contact))
   end
 
   def by_department
+    redirect_to department_path(department: params[:department])
+  end
+
+  def department
     @department = params[:department]
     @contacts = Contact.where(department: @department)
     render :index

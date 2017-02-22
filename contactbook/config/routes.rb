@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   resources :contacts
 
   put 'contacts/:id/active', to: 'contacts#active', as: 'active_contact'
-  post 'contacts/by_department', to: 'contacts#by_department'
+  post 'contacts/by_department/', to: 'contacts#by_department', as: 'by_department'
+  get 'contacts/by_department/:department', to: 'contacts#department', as: 'department'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,7 +1,11 @@
 <div class='twelve columns'>
   <div class='center'>
-    <h3><%= current_user.email %>'s contacts </h3>
-    <%= link_to 'Add Contact', new_contact_path, class: 'button' %>
+    <% if @department %>
+      <h3><%= @department %>'s contacts </h3>
+    <% else %>
+      <h3><%= current_user.email %>'s contacts </h3>
+      <%= link_to 'Add Contact', new_contact_path, class: 'button' %>
+    <% end %>
     <hr>
   </div>
 
@@ -30,7 +34,7 @@
               <td><%= contact.emergency_contact_name %></td>
               <td><%= contact.emergency_contact_phone %></td>
               <td>
-                <% if contact.user_id == current_user.id %>
+                <% if contact.department == current_user.department %>
                   <%= link_to active_contact_path(contact), method: :put do %>
                     <%= contact.active ? 'Yes' : 'No' %>
                   <% end %>
